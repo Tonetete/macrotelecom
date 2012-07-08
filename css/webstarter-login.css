@@ -1,0 +1,183 @@
+body
+{
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	font-size: 12px;
+	color: #333;
+	background-image: url("../img/ws_bg.jpg");
+	background-repeat: repeat-x;
+	background-color: #a4c3e0;
+}
+
+#bg
+{
+	background-image: url("../img/ws_bgTop.jpg");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+#core
+{
+	margin: 0 auto;
+	width: 500px;
+	min-height: 720px;
+	position: relative;
+	text-align: left;
+}
+
+#logo
+{
+	width: 500px;
+	height: 130px;
+	text-align: center;
+}
+
+#box
+{
+	width: 460px;
+	height: 222px;
+	background-image: url("../img/ws_login_box.png");
+	padding: 0px 20px;
+}
+
+#pleaseLogin
+{
+	color: #005ca2;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 52px;
+	background-image: url("../img/ws_login_icon.png");
+	background-repeat: no-repeat;
+	background-position: -1px center;
+}
+
+#pleaseLoginLeft
+{
+	padding-left: 35px;
+	float: left;
+}
+
+#pleaseLoginRight
+{
+	float: left;
+	padding-left: 4px;
+	font-weight: normal;
+	font-size: 12px;
+	color: #333;
+}
+
+#email, #password
+{
+	height: 32px;
+	line-height: 32px;
+	font-size: 14px;
+	color: #213e59;
+	font-weight: bold;
+}
+
+#userField, #passwordField
+{
+	width: 460px;
+	height: 38px;
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+#userField
+{
+	background-image: url("../img/ws_login_email.png");
+}
+
+#passwordField
+{
+	background-image: url("../img/ws_login_pass.png");
+}
+
+#userField input, #passwordField input
+{
+	position: absolute;
+	top: 4px;
+	left: 48px;
+	width: 405px;
+	height: 28px;
+	line-height: 28px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	background: transparent;
+}
+
+#loginButton, #forgottenPassword
+{
+	float: left;
+}
+
+#forgottenPassword
+{
+	line-height: 32px;
+	padding-left: 10px;
+}
+
+.space3
+{
+	padding-top: 3px;
+}
+
+.space
+{
+	padding-top: 6px;
+}
+
+.space10
+{
+	padding-top: 10px;
+}
+
+.space12
+{
+	padding-top: 12px;
+}
+
+.space20
+{
+	padding-top: 20px;
+}
+
+.space24
+{
+	padding-top: 24px;
+}
+
+.space30
+{
+	padding-top: 30px;
+}
+
+.clear
+{
+	clear: both;
+}
+
+img
+{
+	border: 0px;
+}
+
+input
+{
+	outline: none;
+}
+
+a
+{
+	color: #005ca2;
+	text-decotation: underline;
+}
+
+a:hover
+{
+	text-decoration: none;
+}

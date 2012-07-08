@@ -1,0 +1,984 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>WebStarter Admin Template Help</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;WebStarter Admin Template&rdquo; Documentation by &ldquo;Adam Kontor&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;WebStarter Admin Template&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 12/Dec/2011<br>
+					By: Adam Kontor<br>
+					Email: <a href="mailto:adam@kontor.hu">adam@kontor.hu</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my template. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/adamkontor">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+
+		<hr>
+
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#html">HTML files</a></li>
+			<li><a href="#logo">Logo</a></li>
+			<li><a href="#menu">Menubar</a></li>
+			<li><a href="#boxes">Boxes</a></li>
+			<li><a href="#dashboard">Dashboard</a></li>
+			<li><a href="#forms">Forms</a></li>
+			<li><a href="#charts">Charts</a></li>
+			<li><a href="#css">CSS files</a></li>
+			<li><a href="#js">JavaScript</a></li>
+			<li><a href="#psd">PSD Files</a></li>
+			<li><a href="#plugins">Used Plugins and Icons</a></li>
+		</ol>
+
+		<hr>
+
+		<h3 id="html"><strong>A) HTML files</strong> - <a href="#toc">top</a></h3>
+		
+		<p>HTML examples:</p>
+		
+		<ol>
+			<li>charts.html</li>
+			<li>dashboard.html (index.html is the same)</li>
+			<li>datagrid.html</li>
+			<li>form.html</li>
+			<li>login.html</li>
+			<li>messages.html</li>
+			<li>others.html</li>
+		</ol>
+		
+		<p>The basic structure of the files:</p>
+		
+		<pre>
+&lt;div id=&quot;bgTop&quot;&gt;
+
+	&lt;div id=&quot;core&quot;&gt;
+
+		&lt;div id=&quot;bgBottom&quot;&gt;
+
+			&lt;div id=&quot;header&quot;&gt;
+				&lt;!-- Logo, user information and log out link --&gt;
+			&lt;/div&gt;
+
+			&lt;div id=&quot;menu&quot;&gt;
+				&lt;!-- dropdown menubar --&gt;
+			&lt;/div&gt;
+
+			&lt;div id=&quot;content&quot;&gt;
+				<strong>&lt;!-- the main content of the page --&gt;</strong>
+			&lt;/div&gt;
+
+			&lt;div id=&quot;footer&quot;&gt;
+				&lt;!-- footer --&gt;
+			&lt;/div&gt;
+
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+		</pre>
+
+		<hr>
+		
+		<h3 id="logo"><strong>B) Logo</strong> - <a href="#toc">top</a></h3>
+		
+		<p>There is two logo versions, one bigger for the login page, and one for the other pages.</p>
+		
+		<ol>
+			<li>Bigger logo (login page): img/ws_login_logo.png</li>
+			<li>Smaller logo: img/ws_logo.png</li>
+		</ol>
+		
+		<p>The logo is <strong>centered with javascript automatically</strong> (vertically). If you don't want that, remove these lines from both js/ws.init.js and ws.login.init.js:</p>
+		
+		<pre>
+$(window).load(function()
+{
+	$("#logo img").vAlign();
+});
+		</pre>
+		
+		<p>I suggest to use transparent png files to replace these files.</p>
+
+		<hr>
+
+		<h3 id="menu"><strong>C) Menubar</strong> - <a href="#toc">top</a></h3>
+		
+		<p>The content of the menu must be a standard html unordered list.</p>
+		
+		<p>You can have as many sub menus as you want, just use deeper ul list.</p>
+		
+		<p style="font-weight: bold;">Example #1:</p>
+		
+		<pre>
+&lt;div id=&quot;menu&quot;&gt;
+	&lt;ul id=&quot;menuUl&quot; class=&quot;sf-menu&quot;&gt;
+		&lt;li&gt;&lt;img src=&quot;img/key.png&quot; align=&quot;left&quot; alt=&quot;Login Page&quot; /&gt;&lt;a href=&quot;login.html&quot;&gt;Login Page&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/house.png&quot; align=&quot;left&quot; alt=&quot;Dashboard&quot; /&gt;&lt;a href=&quot;dashboard.html&quot;&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/application_form.png&quot; align=&quot;left&quot; alt=&quot;Form&quot; /&gt;&lt;a href=&quot;form.html&quot;&gt;Form&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/application_error.png&quot; align=&quot;left&quot; alt=&quot;Messages&quot; /&gt;&lt;a href=&quot;messages.html&quot;&gt;Messages&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/application_view_columns.png&quot; align=&quot;left&quot; alt=&quot;Table&quot; /&gt;&lt;a href=&quot;datagrid.html&quot;&gt;Table&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/chart_bar.png&quot; align=&quot;left&quot; alt=&quot;Charts&quot; /&gt;&lt;a href=&quot;charts.html&quot;&gt;Charts&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;img src=&quot;img/plugin.png&quot; align=&quot;left&quot; alt=&quot;Other Widgets&quot; /&gt;&lt;a href=&quot;others.html&quot;&gt;Other Widgets&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;&lt;!-- END OF #menu --&gt;
+		</pre>
+		
+		<img src="menu_1.jpg" /><br /><br />
+		
+		More icons like these: <a href="http://famfamfam.com/lab/icons/silk/" target="_blank">http://famfamfam.com/lab/icons/silk/</a> (Silk icons)
+		
+		<br /><br />
+		<p style="font-weight: bold;">Example #2:</p>
+
+		<pre>
+&lt;div id=&quot;menu&quot;&gt;
+	&lt;ul id=&quot;menuUl&quot; <strong>class=&quot;sf-menu&quot;&gt;</strong>				
+		&lt;li&gt;Main menu
+			&lt;ul&gt;
+				&lt;li&gt;Submenu&lt;/li&gt;
+				&lt;li&gt;Submenu&lt;/li&gt;
+				&lt;li&gt;Submenu
+					&lt;ul&gt;
+						&lt;li&gt;Deeper menu&lt;/li&gt;
+						&lt;li&gt;Deeper menu&lt;/li&gt;
+						&lt;li&gt;Deeper menu
+							&lt;ul&gt;
+								&lt;li&gt;Even deeper&lt;/li&gt;
+								&lt;li&gt;Even deeper&lt;/li&gt;
+								&lt;li&gt;Even deeper&lt;/li&gt;
+								&lt;li&gt;Even deeper
+									&lt;ul&gt;
+										&lt;li&gt;No more :)&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/li&gt;
+							&lt;/ul&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="menu_2.jpg" /><br /><br />
+
+		<hr>
+
+		<h3 id="boxes"><strong>D) Boxes</strong> - <a href="#toc">top</a></h3>
+		
+		<p>You can separate your contents into collapsible boxes.</p>
+		
+		<p style="font-weight: bold;">Example (one column):</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;This is the name of the box&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;text&quot;&gt;
+			This is the content of the box
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_1.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">Example (two column):</p>
+		
+		<pre>
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2&gt;Column 1/2 name&lt;/h2&gt;
+	&lt;div&gt;
+		Column 1/2 content
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2&gt;Column 1/2 name&lt;/h2&gt;
+	&lt;div&gt;
+		Column 1/2 content
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_2.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">Closed initial state example:</p>
+
+		<pre>
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2&gt;Column 1/2 name&lt;/h2&gt;
+	&lt;div&gt;
+		Column 1/2 content
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2 <strong>class=&quot;closed&quot;</strong>&gt;Column 1/2 name&lt;/h2&gt;
+	&lt;div&gt;
+		Column 1/2 content
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_3.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">One column, closed example:</p>
+
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;Spoiler alert&lt;/h2&gt;
+	&lt;div&gt;
+		You can't see that :)
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_4.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Tabs and Accordion example:</p>
+		
+		<pre>
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2&gt;Tabs Example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;tabs&quot;&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;#tabs-1&quot;&gt;Tabs 1.&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;#tabs-2&quot;&gt;Tabs 2.&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;#tabs-3&quot;&gt;Tabs 3.&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;div id=&quot;tabs-1&quot;&gt;
+				&lt;p&gt;
+					Content 1.
+				&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;div id=&quot;tabs-2&quot;&gt;
+				&lt;p&gt;
+					Content 2.
+				&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;div id=&quot;tabs-3&quot;&gt;
+				&lt;p&gt;
+					Content 3.
+				&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;box2&quot;&gt;
+	&lt;h2&gt;Accordion Example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;accordion&quot;&gt;
+			&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Accordion 1&lt;/a&gt;&lt;/h3&gt;
+			&lt;div&gt;
+				&lt;p&gt;
+					Content 1.
+				&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Accordion 2&lt;/a&gt;&lt;/h3&gt;
+			&lt;div&gt;
+				&lt;p&gt;
+					Content 2.
+				&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Accordion 3&lt;/a&gt;&lt;/h3&gt;
+			&lt;div&gt;
+				&lt;p&gt;
+					Content 3.
+				&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Accordion 4&lt;/a&gt;&lt;/h3&gt;
+			&lt;div&gt;
+				&lt;p&gt;
+					Content 4.
+				&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+
+		<img src="box_5.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">One column box with tabs:</p>
+
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;Tabbed Charts&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;text&quot;&gt;
+			&lt;div class=&quot;tabs&quot;&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;#tabs1&quot;&gt;Tab name 1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#tabs2&quot;&gt;Tab name 2&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#tabs3&quot;&gt;Tab name 3&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#tabs4&quot;&gt;Tab name 4&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#tabs5&quot;&gt;Tab name 5&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+				&lt;div id=&quot;tabs1&quot;&gt;
+					Tab content 1.
+				&lt;/div&gt;
+				&lt;div id=&quot;tabs2&quot;&gt;
+					Tab content 2.
+				&lt;/div&gt;
+				&lt;div id=&quot;tabs3&quot;&gt;
+					Tab content 3.
+				&lt;/div&gt;
+				&lt;div id=&quot;tabs4&quot;&gt;
+					Tab content 4.
+				&lt;/div&gt;
+				&lt;div id=&quot;tabs5&quot;&gt;
+					Tab content 5.
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+
+		<img src="box_6.jpg" /><br /><br />
+
+		<strong>More help for Tabs and Accordion: <a href="http://jqueryui.com/demos/tabs/" target="_blank">http://jqueryui.com/demos/tabs/</a> <a href="http://jqueryui.com/demos/accordion/" target="_blank">http://jqueryui.com/demos/accordion/</a></strong>
+		
+		<br /><br />
+		
+		<p style="font-weight: bold;">Simple text content in a box:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+
+	&lt;h2&gt;Text widget&lt;/h2&gt;
+
+	&lt;div&gt;
+
+		&lt;div class=&quot;text&quot;&gt;
+			&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt
+			venenatis leo a auctor. Vivamus congue pellentesque nisi ut eleifend. Integer tincidunt velit
+			tempor tortor consequat porttitor a sit amet ante. Nullam vehicula dictum arcu quis auctor.
+			Phasellus vel nisl magna. Integer nec velit magna, non mattis dui. Maecenas blandit tempor pulvinar.
+			Fusce molestie fermentum justo sed placerat. Sed fermentum molestie est, quis ullamcorper elit bibendum in.
+			Nullam congue iaculis fringilla. Phasellus at metus eu purus ultrices aliquet vel eget nibh.
+			Nunc pretium dictum varius. Vivamus risus ante, gravida vel dignissim vitae, dignissim id velit.
+			Praesent luctus elit a urna tincidunt tempus. Vivamus venenatis feugiat diam in facilisis. In vitae elit
+			eu dolor mattis iaculis porttitor vitae orci. Nam nec nulla libero, at vulputate erat. Nulla gravida pharetra
+			felis non consequat.&lt;/p&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_7.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Two column text widget:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+
+	&lt;h2&gt;Two column text widget&lt;/h2&gt;
+
+	&lt;div&gt;
+
+		&lt;div class=&quot;text2&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.
+			Mauris suscipit, diam in venenatis iaculis, magna nulla convallis ligula,
+			vitae varius tellus leo at dolor. Suspendisse potenti. Phasellus non urna
+			turpis, vitae cursus mauris. Nulla fermentum convallis diam vel gravida.&lt;/p&gt;
+		&lt;/div&gt;
+
+		&lt;div class=&quot;text2&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.
+			Mauris suscipit, diam in venenatis iaculis, magna nulla convallis ligula,
+			vitae varius tellus leo at dolor. Suspendisse potenti. Phasellus non urna
+			turpis, vitae cursus mauris. Nulla fermentum convallis diam vel gravida.&lt;/p&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_8.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Three column text widget:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+
+	&lt;h2&gt;Three column text widget&lt;/h2&gt;
+
+	&lt;div&gt;
+
+		&lt;div class=&quot;text3&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;div class=&quot;text3&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;div class=&quot;text3&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+
+&lt;/div&gt;
+		</pre>
+
+		<img src="box_9.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Four column text widget:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+
+	&lt;h2&gt;Four column text widget&lt;/h2&gt;
+
+	&lt;div&gt;
+
+		&lt;div class=&quot;text4&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;div class=&quot;text4&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;div class=&quot;text4&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;div class=&quot;text4&quot;&gt;
+			&lt;p&gt;Nullam orci diam, elementum vel accumsan et, feugiat at turpis.&lt;/p&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+
+&lt;/div&gt;
+		</pre>
+		
+		<img src="box_10.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Calendar in a box:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+
+	&lt;h2&gt;Calendar Example&lt;/h2&gt;
+	
+	&lt;div&gt;
+		
+		&lt;div class=&quot;text&quot;&gt;
+			&lt;div id=&quot;calendar&quot;&gt;&lt;/div&gt;
+		&lt;/div&gt;
+
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+		</pre>
+
+		<img src="box_11.jpg" /><br /><br />
+		
+		<p>The calendar is filled with US holidays automatically.</p>
+		
+		<p>You can change it in <strong>js/ws.init.js</strong>:</p>
+
+		<pre>
+$(&#039;#calendar&#039;).fullCalendar({
+	// US Holidays
+	events: &#039;http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic&#039;
+});
+		</pre>
+
+		<strong>More help for the Calendar plugin: <a href="http://arshaw.com/fullcalendar/" target="_blank">http://arshaw.com/fullcalendar/</a></strong>
+
+		<br /><br />
+
+		<hr>
+
+		<h3 id="dashboard"><strong>E) Dashboard</strong> - <a href="#toc">top</a></h3>
+		
+		<p style="font-weight: bold;">Big Icons:</p>
+		
+		<pre>
+&lt;div class=&quot;bigIcons&quot;&gt;
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_settings.png&quot; alt=&quot;Settings&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;Basic Settings&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_orders.png&quot; alt=&quot;Orders&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;Recent Orders&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_comments.png&quot; alt=&quot;Comments&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;Recent Comments&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_email.png&quot; alt=&quot;Email&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;Send Newsletter&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_note.png&quot; alt=&quot;Page&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;New Page&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_customer.png&quot; alt=&quot;Customer&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;New Customer&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;bigIcon&quot;&gt;
+		&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/big_icon_stat.png&quot; alt=&quot;Stat&quot; /&gt;&lt;/a&gt;
+		&lt;div class=&quot;bigIconText&quot;&gt;&lt;a href=&quot;#&quot;&gt;Statistics&lt;/a&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;!-- END OF .bigIcons --&gt;
+		</pre>
+		
+		<img src="dash_1.jpg" /><br /><br />
+
+		<p>Icons from iconSweets 2 (<a href="http://iconsweets2.com/" target="_blank">http://iconsweets2.com/</a>)</p>
+		
+		<p>You can make your own icons with that style in <strong>psd/2011_webstarter_basics.psd</strong></p>
+		
+		<p style="font-weight: bold;">Quick Info:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;Quick Info&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;text&quot;&gt;
+			&lt;div class=&quot;infoColumnUp&quot;&gt;
+				&lt;div class=&quot;infoColumnIcon&quot;&gt;&lt;img src=&quot;img/quick_info_up.png&quot; alt=&quot;Up&quot; /&gt;&lt;/div&gt;
+				&lt;div class=&quot;infoColumnNumber&quot;&gt;&lt;div class=&quot;infoColumnNumberBg&quot;&gt;12&lt;/div&gt;&lt;/div&gt;
+				&lt;p&gt;New orders today&lt;/p&gt;
+			&lt;/div&gt;
+			
+			&lt;div class=&quot;infoColumnDown&quot;&gt;
+				&lt;div class=&quot;infoColumnIcon&quot;&gt;&lt;img src=&quot;img/quick_info_down.png&quot; alt=&quot;Down&quot; /&gt;&lt;/div&gt;
+				&lt;div class=&quot;infoColumnNumber&quot;&gt;&lt;div class=&quot;infoColumnNumberBg&quot;&gt;231&lt;/div&gt;&lt;/div&gt;
+				&lt;p&gt;Visitors today&lt;/p&gt;
+			&lt;/div&gt;
+			
+			&lt;div class=&quot;infoColumnSame&quot;&gt;
+				&lt;div class=&quot;infoColumnIcon&quot;&gt;&lt;img src=&quot;img/quick_info_same.png&quot; alt=&quot;-&quot; /&gt;&lt;/div&gt;
+				&lt;div class=&quot;infoColumnNumber&quot;&gt;&lt;div class=&quot;infoColumnNumberBg&quot;&gt;2.4%&lt;/div&gt;&lt;/div&gt;
+				&lt;p&gt;Conversion rate&lt;/p&gt;
+			&lt;/div&gt;
+			
+			&lt;div class=&quot;infoColumnUp&quot;&gt;
+				&lt;div class=&quot;infoColumnIcon&quot;&gt;&lt;img src=&quot;img/quick_info_up.png&quot; alt=&quot;Up&quot; /&gt;&lt;/div&gt;
+				&lt;div class=&quot;infoColumnNumber&quot;&gt;&lt;div class=&quot;infoColumnNumberBg&quot;&gt;$3200&lt;/div&gt;&lt;/div&gt;
+				&lt;p&gt;Revenue&lt;/p&gt;
+			&lt;/div&gt;
+
+			&lt;div class=&quot;infoColumnDown last&quot;&gt;
+				&lt;div class=&quot;infoColumnIcon&quot;&gt;&lt;img src=&quot;img/quick_info_down.png&quot; alt=&quot;Down&quot; /&gt;&lt;/div&gt;
+				&lt;div class=&quot;infoColumnNumber&quot;&gt;&lt;div class=&quot;infoColumnNumberBg&quot;&gt;$56&lt;/div&gt;&lt;/div&gt;
+				&lt;p&gt;Average Orders&lt;/p&gt;
+			&lt;/div&gt;
+
+			&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="dash_2.jpg" /><br /><br />
+
+		<hr>
+		
+		<h3 id="forms"><strong>F) Forms</strong> - <a href="#toc">top</a></h3>
+		
+		<p style="font-weight: bold;">TextField example:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextField example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;textField&quot;&gt;
+
+			&lt;div&gt;Site name:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;sitename&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="form_1.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">TextField 1/2 example:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextField 1/2 example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;textField2&quot;&gt;
+
+			&lt;div&gt;Description:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;description&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField2&quot;&gt;
+
+			&lt;div&gt;Keywords:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;keywords&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="form_2.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">TextField 1/3 example:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextField 1/3 example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;textField3&quot;&gt;
+
+			&lt;div&gt;textField 1/3:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid1&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField3&quot;&gt;
+
+			&lt;div&gt;textField 1/3:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid2&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField3&quot;&gt;
+
+			&lt;div&gt;textField 1/3:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid3&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="form_3.jpg" /><br /><br />
+	
+		<p style="font-weight: bold;">TextField 1/4 example:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextField 1/4 example&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;textField4&quot;&gt;
+
+			&lt;div&gt;textField 1/4:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid1&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField4&quot;&gt;
+
+			&lt;div&gt;textField 1/4:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid2&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField4&quot;&gt;
+
+			&lt;div&gt;textField 1/4:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid3&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+
+		&lt;div class=&quot;textField4&quot;&gt;
+
+			&lt;div&gt;textField 1/4:&lt;/div&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtfieldthid4&quot; value=&quot;&quot; /&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="form_4.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">TextArea:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextArea&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;textArea&quot;&gt;
+		
+			&lt;div&gt;Long description:&lt;/div&gt;
+			
+			&lt;textarea name=&quot;longdesc&quot; rows=&quot;6&quot; cols=&quot;12&quot;&gt;&lt;/textarea&gt;
+		
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+
+		<img src="form_5.jpg" /><br /><br />
+
+		<p style="font-weight: bold;">WYSIWYG editor:</p>
+		
+		<pre>
+&lt;div class=&quot;box&quot;&gt;
+	&lt;h2&gt;TextArea&lt;/h2&gt;
+	&lt;div&gt;
+		&lt;div class=&quot;richTextArea&quot;&gt;
+
+			&lt;textarea name=&quot;longdesc&quot; rows=&quot;6&quot; cols=&quot;12&quot;&gt;What You See Is What You Get editor&lt;/textarea&gt;
+		
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		
+		<img src="form_6.jpg" /><br /><br />
+		
+		<p style="font-weight: bold;">Buttons:</p>
+		
+		<pre>
+&lt;div class=&quot;buttons&quot;&gt;
+
+	&lt;div class=&quot;button&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/accept.png&quot; alt=&quot;Save&quot; /&gt; Save&lt;/a&gt;&lt;/div&gt;
+	&lt;div class=&quot;button&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/add.png&quot; alt=&quot;Save and New&quot; /&gt; Save and New Record&lt;/a&gt;&lt;/div&gt;
+	&lt;div class=&quot;button&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;img/application_view_columns.png&quot; alt=&quot;Back&quot; /&gt; Back to List&lt;/a&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+		</pre>
+
+		<img src="form_7.jpg" /><br /><br />
+		
+		<p>Check out the <strong>form.html</strong> for more examples.</p>
+		
+		<hr>
+
+		<h3 id="charts"><strong>G) Charts</strong> - <a href="#toc">top</a></h3>
+		
+		<p>You can use five different charts:</p>
+		
+		<ol>
+			<li>AreaChart</li>
+			<li>LineChart</li>
+			<li>BarChart</li>
+			<li>ColumnChart</li>
+			<li>PieChart</li>
+		</ol>
+		
+		<p>The data must be in a standard html table, like that:</p>
+		
+		<pre>
+&lt;table <strong>class=&quot;pieChart&quot;</strong>&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;Search Engines&lt;/th&gt;
+			&lt;th&gt;Referring Sites&lt;/th&gt;
+			&lt;th&gt;Direct Traffic&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Sources&lt;/th&gt;
+			&lt;td&gt;34523&lt;/td&gt;
+			&lt;td&gt;22123&lt;/td&gt;
+			&lt;td&gt;25031&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+		</pre>
+		
+		<p>If you use <strong>areaChart, lineChart, barChart, columnChart</strong> or <strong>pieChart</strong> class name for a table (<strong style="color: red;">small initial!</strong>), it will be a chart.</p>
+		
+		<p><strong>pieChart example:</strong></p>
+		
+		<img src="chart_pieChart.jpg" />
+		
+		<p style="font-weight: bold;">Multiple charts from the same HTML table:</p>
+		
+		<pre>
+&lt;table class=&quot;classOfTheChartYouWant&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;Jan&lt;/th&gt;
+			&lt;th&gt;Feb&lt;/th&gt;
+			&lt;th&gt;Mar&lt;/th&gt;
+			&lt;th&gt;Apr&lt;/th&gt;
+			&lt;th&gt;May&lt;/th&gt;
+			&lt;th&gt;Jun&lt;/th&gt;
+			&lt;th&gt;Jul&lt;/th&gt;
+			&lt;th&gt;Aug&lt;/th&gt;
+			&lt;th&gt;Sep&lt;/th&gt;
+			&lt;th&gt;Oct&lt;/th&gt;
+			&lt;th&gt;Nov&lt;/th&gt;
+			&lt;th&gt;Dec&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Visitors&lt;/th&gt;
+			&lt;td&gt;34523&lt;/td&gt;
+			&lt;td&gt;22123&lt;/td&gt;
+			&lt;td&gt;25031&lt;/td&gt;
+			&lt;td&gt;30342&lt;/td&gt;
+			&lt;td&gt;45321&lt;/td&gt;
+			&lt;td&gt;46234&lt;/td&gt;
+			&lt;td&gt;50434&lt;/td&gt;
+			&lt;td&gt;61302&lt;/td&gt;
+			&lt;td&gt;75321&lt;/td&gt;
+			&lt;td&gt;61232&lt;/td&gt;
+			&lt;td&gt;43423&lt;/td&gt;
+			&lt;td&gt;85762&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+		</pre>
+		
+		<p><strong>areaChart class:</strong></p>
+		
+		<img src="chart_1.jpg" /><br /><br />
+		
+		<p><strong>lineChart class:</strong></p>
+		
+		<img src="chart_2.jpg" /><br /><br />
+		
+		<p><strong>barChart class:</strong></p>
+		
+		<img src="chart_3.jpg" /><br /><br />
+		
+		<p><strong>columnChart class:</strong></p>
+		
+		<img src="chart_4.jpg" /><br /><br />
+		
+		<p><strong>pieChart class:</strong></p>
+		
+		<img src="chart_5.jpg" /><br /><br />
+
+		<hr>
+		
+		<h3 id="css"><strong>H) CSS files</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Included css files (css directory):</p>
+		
+		<ol>
+			<li>webstarter.css: the layout and overall style of everything</li>
+			<li>superfish.css: stylesheet for the menubar (superfish jQuery plugin)</li>
+		</ol>
+
+		<hr>
+		
+		<h3 id="js"><strong>I) JavaScript</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Included javascript files (js directory):</p>
+		
+		<ol>
+			<li>jquery.min.js: jQuery JavaScript Library - this is actually loaded from Google, not stored locally</li>
+			<li>jsapi: Google's Javascript API, needed for Google Charts - loaded from Google too</li>
+			<li>jquery.gvChart-1.0.1.min.js: jQuery plugin for Google Charts</li>
+			<li>jquery.vAlign.js: just a small jQuery plugin to align images</li>
+			<li>jquery.disableSelection.js: a small jQuery plugin to disable selection in box headers</li>
+			<li>jquery.superfish.js: a jQuery plugin for creating the dropdown menubar</li>
+			<li>jquery.wysiwyg.js: a jQuery plugin for the WYSIWYG textarea</li>
+			<li>fullcalendar.min.js: a jQuery plugin for the calendar widget</li>
+			<li>jquery-ui-1.8.13.custom.min.js: jQuery UI</li>
+			<li><strong>ws.init.js:</strong> WebStarter init, this script starts everything, the menubar, the charts, the boxes etc.</li>
+		</ol>
+		
+		<p>FullCalendar init: ws.init.js, line 346. Help for configuration: <a href="http://arshaw.com/fullcalendar/docs/usage/">http://arshaw.com/fullcalendar/docs/usage/</a></p>
+
+		<hr>
+		
+		<h3 id="psd"><strong>K) PSD Files</strong> - <a href="#toc">top</a></h3>
+		
+		<p>I've included two psd files with this template (psd directory):</p>
+		
+			<ol>
+				<li><strong>2011_webstarter_basics.psd:</strong> The basic structure.</li>
+				<li><strong>2011_webstarter_login.psd:</strong> The login page.</li>
+			</ol>
+
+		<hr>
+		
+		<h3 id="plugins"><strong>L) Used Plugins and Icons</strong> - <a href="#toc">top</a></h3>
+		
+		<p>I've used the following images, icons, jQuery plugins or other files as listed.
+		
+		<ul>
+			<li>iconSweets 2 (<a href="http://iconsweets2.com/" target="_blank">http://iconsweets2.com/</a>)</li>
+			<li>iCandies Icon Set for the Dashboard (<a href="http://www.smashingmagazine.com/2010/09/01/icandies-icon-set-60-free-icons-your-user-interfaces-and-apps/">http://www.smashingmagazine.com/2010/09/01/icandies-icon-set-60-free-icons-your-user-interfaces-and-apps/</a>)</li>
+			<li>Silk icons for the Menubar (<a href="http://famfamfam.com/lab/icons/silk/">http://famfamfam.com/lab/icons/silk/</a>)</li>
+			<li>jQuery (<a href="http://jquery.com">http://jquery.com</a>)</li>
+			<li>jQuery UI (<a href="http://jqueryui.com/">http://jqueryui.com/</a>)</li>
+			<li>Superfish jQuery menu widget (<a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a>)</li>
+			<li>Google Visualisation Charts (<a href="http://code.google.com/intl/en/apis/chart/">http://code.google.com/intl/en/apis/chart/</a>)</li>
+			<li>jQuery gvChart plugin (<a href="http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/">http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/</a>)</li>
+			<li>FullCalendar jQuery plugin (<a href="http://arshaw.com/fullcalendar/">http://arshaw.com/fullcalendar/</a></li>
+			<li>WYSIWYG jQuery plugin (<a href="https://github.com/akzhan/jwysiwyg">https://github.com/akzhan/jwysiwyg</a>)</li>
+			<li>pngFix (<a href="http://jquery.andreaseberhard.de/pngFix/index.html">http://jquery.andreaseberhard.de/pngFix/index.html</a></li>
+		</ul>
+		
+		<hr>
+
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

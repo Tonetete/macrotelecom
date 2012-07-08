@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>WebStarter Admin Template - Messages</title>
+
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="css/webstarter.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.13.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/superfish.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.wysiwyg.css" />
+<link rel="stylesheet" type="text/css" href="css/fullcalendar.css" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.vAlign.js"></script>
+<script type="text/javascript" src="js/jquery.disableSelection.js"></script>
+<script type="text/javascript" src="js/jquery.superfish.js"></script>
+<script type="text/javascript" src="js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="js/gcal.js"></script>
+<script type="text/javascript" src="js/jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="js/ws.init.js"></script>
+
+<!--[if lte IE 6]>
+
+<script type="text/javascript" src="js/jquery.pngFix.js"></script>
+<script type="text/javascript" src="js/jquery.pngFix.init.js"></script>
+
+<![endif]-->
+
+</head>
+
+<body>
+
+<div id="bgTop">
+
+	<div id="core">
+
+		<div id="bgBottom">
+
+			<div id="header">
+
+				<div id="logo">
+					<a href="dashboard.html"><img src="img/ws_logo.png" alt="WebStarter Dashboard" /></a>
+				</div>
+				
+				<div id="controls">
+					<img src="img/ws_icon_user.png" alt="User" /> Logged in: <strong>Your Name</strong>
+				</div>
+				
+				<div id="logOff">
+					<a href="#"><img src="img/ws_logoff.png" alt="Log off" /></a>
+				</div>
+
+			</div><!-- END OF #header -->
+
+			<div id="menu">
+				<ul id="menuUl" class="sf-menu">
+					<li><span class="folder"><img src="img/key.png" align="left" style="padding-right: 4px;" alt="Login Page" /><a href="login.html">Login Page</a></span></li>
+					<li><span class="folder"><img src="img/house.png" align="left" style="padding-right: 4px;" alt="Dashboard" /><a href="dashboard.html">Dashboard</a></span></li>
+					<li><span class="folder"><img src="img/application_form.png" align="left" style="padding-right: 4px;" alt="Form" /><a href="form.html">Form</a></span></li>
+					<li><span class="folder"><img src="img/application_error.png" align="left" style="padding-right: 4px;" alt="Messages" /><a href="messages.html">Messages</a></span></li>
+					<li><span class="folder"><img src="img/application_view_columns.png" align="left" style="padding-right: 4px;" alt="Table" /><a href="datagrid.html">Table</a></span></li>
+					<li><span class="folder"><img src="img/chart_bar.png" align="left" style="padding-right: 4px;" alt="Charts" /><a href="charts.html">Charts</a></span></li>
+					<li><span class="folder"><img src="img/plugin.png" align="left" style="padding-right: 4px;" alt="Other Widgets" /><a href="others.html">Other Widgets</a></span></li>
+				</ul>
+			</div><!-- END OF #menu -->
+
+			<div id="content">
+			
+				<div class="error">
+				
+					<h2>Error message</h2>
+					
+					<div>This is your error description line.</div>
+				
+				</div>
+				
+				<div class="warning">
+				
+					<h2>Warning message</h2>
+					
+					<div>This is your warning description line.</div>
+				
+				</div>
+				
+				<div class="success">
+				
+					<h2>Success message</h2>
+					
+					<div>This is your success description line.</div>
+				
+				</div>
+
+				<div class="box">
+				
+					<h2>Basic Site Settings</h2>
+					
+					<div>
+					
+						<div class="textField">
+						
+							<div>Site name:</div>
+							
+							<input type="text" name="sitename" value="" />
+						
+						</div>
+						
+						<div class="textField2">
+						
+							<div>Description:</div>
+							
+							<input type="text" name="description" value="" />
+						
+						</div>
+						
+						<div class="textField2">
+						
+							<div>Keywords:</div>
+							
+							<input type="text" name="keywords" value="" />
+						
+						</div>
+						
+						<div class="textArea">
+						
+							<div>Long description:</div>
+							
+							<textarea name="longdesc" rows="6" cols="12"></textarea>
+						
+						</div>
+
+					</div>
+					
+				</div>
+
+				<div class="buttons">
+
+					<div class="button"><a href="#"><img src="img/accept.png" alt="Save" /> Save</a></div>
+					<div class="button"><a href="#"><img src="img/add.png" alt="Save and New" /> Save and New Record</a></div>
+					<div class="button"><a href="#"><img src="img/application_view_columns.png" alt="Back" /> Back to List</a></div>
+
+				</div>
+
+			</div><!-- END OF #content -->
+
+			<div id="footer">
+				<strong>WebStarter Content Management System</strong> - 2011 &copy; YourDomainName.com
+			</div>
+
+		</div><!-- END OF #bgBottom -->
+
+	</div><!-- END OF #core -->
+
+</div><!-- END OF #bgTop -->
+
+</body>
+</html>

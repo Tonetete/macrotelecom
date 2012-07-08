@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>WebStarter Admin Template - DataGrid</title>
+
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="css/webstarter.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.13.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/superfish.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.wysiwyg.css" />
+<link rel="stylesheet" type="text/css" href="css/fullcalendar.css" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.vAlign.js"></script>
+<script type="text/javascript" src="js/jquery.disableSelection.js"></script>
+<script type="text/javascript" src="js/jquery.superfish.js"></script>
+<script type="text/javascript" src="js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="js/gcal.js"></script>
+<script type="text/javascript" src="js/jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="js/ws.init.js"></script>
+
+<!--[if lte IE 6]>
+
+<script type="text/javascript" src="js/jquery.pngFix.js"></script>
+<script type="text/javascript" src="js/jquery.pngFix.init.js"></script>
+
+<![endif]-->
+
+</head>
+
+<body>
+
+<div id="bgTop">
+
+	<div id="core">
+
+		<div id="bgBottom">
+
+			<div id="header">
+
+				<div id="logo">
+					<a href="dashboard.html"><img src="img/ws_logo.png" alt="WebStarter Dashboard" /></a>
+				</div>
+				
+				<div id="controls">
+					<img src="img/ws_icon_user.png" alt="User" /> Logged in: <strong>Your Name</strong>
+				</div>
+				
+				<div id="logOff">
+					<a href="#"><img src="img/ws_logoff.png" alt="Log off" /></a>
+				</div>
+
+			</div><!-- END OF #header -->
+
+			<div id="menu">
+				<ul id="menuUl" class="sf-menu">
+					<li><span class="folder"><img src="img/key.png" align="left" style="padding-right: 4px;" alt="Login Page" /><a href="login.html">Login Page</a></span></li>
+					<li><span class="folder"><img src="img/house.png" align="left" style="padding-right: 4px;" alt="Dashboard" /><a href="dashboard.html">Dashboard</a></span></li>
+					<li><span class="folder"><img src="img/application_form.png" align="left" style="padding-right: 4px;" alt="Form" /><a href="form.html">Form</a></span></li>
+					<li><span class="folder"><img src="img/application_error.png" align="left" style="padding-right: 4px;" alt="Messages" /><a href="messages.html">Messages</a></span></li>
+					<li><span class="folder"><img src="img/application_view_columns.png" align="left" style="padding-right: 4px;" alt="Table" /><a href="datagrid.html">Table</a></span></li>
+					<li><span class="folder"><img src="img/chart_bar.png" align="left" style="padding-right: 4px;" alt="Charts" /><a href="charts.html">Charts</a></span></li>
+					<li><span class="folder"><img src="img/plugin.png" align="left" style="padding-right: 4px;" alt="Other Widgets" /><a href="others.html">Other Widgets</a></span></li>
+				</ul>
+			</div><!-- END OF #menu -->
+
+			<div id="content">
+			
+				<div class="dataGrid">
+				
+					<div class="dataGridControl">
+						<div class="dataGridControlButtons">
+							<img src="img/add.png" alt="New" /> <a href="#">New record</a> <img src="img/page_excel.png" alt="CSV export" /> <a href="#">CSV export</a> <img src="img/printer.png" alt="Print" /> <a href="#">Print</a> <img src="img/delete.png" alt="Remove" /> <a href="#">Remove selected</a>
+						</div>
+
+						<div class="dataGridPages">
+							Page: <img src="img/resultset_first.png" alt="First" /> <img src="img/resultset_previous.png" alt="Previous" /> <select name="pageTop"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select> <img src="img/resultset_next.png" alt="Next" /> <img src="img/resultset_last.png" alt="Last" />&nbsp; Items per page: <select name="perPageTop"><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
+						</div>
+
+						<div class="clear"></div>
+					</div>
+				
+					<table>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>City</th>
+								<th>Phone</th>
+								<th>E-mail</th>
+								<th>&nbsp;</th>
+								<th><input type="checkbox" name="deleteAll" value="" /></th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<td>10221</td>
+								<td>Elizabeth</td>
+								<td>R. Kinnison</td>
+								<td>Loyalsock</td>
+								<td>570-435-6538</td>
+								<td>ElizabethRK@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10222</td>
+								<td>Kerry</td>
+								<td>Ruffin</td>
+								<td>Stowe</td>
+								<td>802-253-2806</td>
+								<td>KRuffin@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10223</td>
+								<td>Michelle</td>
+								<td>Jones</td>
+								<td>Franklin</td>
+								<td>617-601-2288</td>
+								<td>MichelleE@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10224</td>
+								<td>Robert</td>
+								<td>Hull</td>
+								<td>Hershey</td>
+								<td>717-534-2800</td>
+								<td>RobertHHull@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10225</td>
+								<td>Derrick</td>
+								<td>Dixon</td>
+								<td>Fort Lauderdale</td>
+								<td>954-267-5177</td>
+								<td>DerrickADixon@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10226</td>
+								<td>Jan</td>
+								<td>Ferguson</td>
+								<td>Eugene</td>
+								<td>541-393-9589</td>
+								<td>JanHFerguson@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10227</td>
+								<td>Frank</td>
+								<td>Rodriguez</td>
+								<td>Carlisle</td>
+								<td>717-245-6630</td>
+								<td>Frank@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10228</td>
+								<td>James</td>
+								<td>Overton</td>
+								<td>Deerfield Beach</td>
+								<td>954-263-3423</td>
+								<td>JamesKn@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10229</td>
+								<td>Edward</td>
+								<td>Kogan</td>
+								<td>Tucson</td>
+								<td>520-977-3778</td>
+								<td>EdwardAKogan@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10230</td>
+								<td>Nydia</td>
+								<td>Renaud</td>
+								<td>Brentwood</td>
+								<td>631-546-1943</td>
+								<td>NydiaMRenaud@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10226</td>
+								<td>Jan</td>
+								<td>Ferguson</td>
+								<td>Eugene</td>
+								<td>541-393-9589</td>
+								<td>JanHFerguson@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10227</td>
+								<td>Frank</td>
+								<td>Rodriguez</td>
+								<td>Carlisle</td>
+								<td>717-245-6630</td>
+								<td>Frank@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10226</td>
+								<td>Jan</td>
+								<td>Ferguson</td>
+								<td>Eugene</td>
+								<td>541-393-9589</td>
+								<td>JanHFerguson@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10227</td>
+								<td>Frank</td>
+								<td>Rodriguez</td>
+								<td>Carlisle</td>
+								<td>717-245-6630</td>
+								<td>Frank@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10226</td>
+								<td>Jan</td>
+								<td>Ferguson</td>
+								<td>Eugene</td>
+								<td>541-393-9589</td>
+								<td>JanHFerguson@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+							<tr>
+								<td>10227</td>
+								<td>Frank</td>
+								<td>Rodriguez</td>
+								<td>Carlisle</td>
+								<td>717-245-6630</td>
+								<td>Frank@example.com</td>
+								<td><img src="img/pencil.png" alt="Edit" /></td>
+								<td><input type="checkbox" name="delete[]" value="" /></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<div class="dataGridControl">
+						<div class="dataGridControlButtons">
+							<img src="img/add.png" alt="New" /> <a href="#">New record</a> <img src="img/page_excel.png" alt="CSV export" /> <a href="#">CSV export</a> <img src="img/printer.png" alt="Print" /> <a href="#">Print</a> <img src="img/delete.png" alt="Remove" /> <a href="#">Remove selected</a>
+						</div>
+
+						<div class="dataGridPages">
+							Page: <img src="img/resultset_first.png" alt="First" /> <img src="img/resultset_previous.png" alt="Previous" /> <select name="pageBottom"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select> <img src="img/resultset_next.png" alt="Next" /> <img src="img/resultset_last.png" alt="Last" />&nbsp; Items per page: <select name="perPageBottom"><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
+						</div>
+
+						<div class="clear"></div>
+					</div>
+
+				</div>
+
+			</div><!-- END OF #content -->
+
+			<div id="footer">
+				<strong>WebStarter Content Management System</strong> - 2011 &copy; YourDomainName.com
+			</div>
+
+		</div><!-- END OF #bgBottom -->
+
+	</div><!-- END OF #core -->
+
+</div><!-- END OF #bgTop -->
+
+</body>
+</html>

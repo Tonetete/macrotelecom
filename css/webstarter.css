@@ -1,0 +1,1127 @@
+body
+{
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	font-size: 12px;
+	color: #333;
+	background-image: url("../img/ws_bg.jpg");
+	background-repeat: repeat-x;
+	background-color: #a4c3e0;
+}
+
+#bgTop
+{
+	background-image: url("../img/ws_bgTop.jpg");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+#bgBottom
+{
+	background-image: url("../img/ws_bg3.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+
+#core
+{
+	margin: 0 auto;
+	width: 960px;
+	position: relative;
+	text-align: left;
+	background-image: url("../img/ws_bg2.jpg");
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-color: white;
+	padding-top: 12px;
+}
+
+#core.alternative
+{
+	background-image: url("../img/ws_bg4.jpg");
+}
+
+#header
+{
+	width: 960px;
+	height: 53px;
+	position: relative;
+}
+
+#header a
+{
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+
+#logo
+{
+	width: 300px;
+	height: 53px;
+	position: absolute;
+	top: 0px;
+	left: 12px;
+}
+
+#controls
+{
+	height: 53px;
+	line-height: 53px;
+	position: absolute;
+	top: 0px;
+	right: 82px;
+	color: #d5dfee;
+	font-size: 11px;
+}
+
+#controls strong
+{
+	font-size: 12px;
+	color: white;
+}
+
+#controls img
+{
+	vertical-align: middle;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+
+#logOff
+{
+	position: absolute;
+	top: 14px;
+	right: 10px;
+}
+
+#menu
+{
+	width: 946px;
+	height: 34px;
+	line-height: 42px;
+	padding: 0px 12px;
+	font-size: 13px;
+	padding-top: 8px;
+}
+
+#menu img
+{
+	padding-right: 4px;
+}
+
+#content
+{
+	padding: 10px;
+	width: 940px;
+	overflow: hidden;
+}
+
+#footer
+{
+	width: 920px;
+	height: 50px;
+	padding-right: 40px;
+	line-height: 50px;
+	text-align: right;
+	font-size: 11px;
+	color: #005ca2;
+}
+
+.error
+{
+	width: 940px;
+	height: 60px;
+	position: relative;
+	background-image: url("../img/ws_error.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin-bottom: 10px;
+	color: #cb2935;
+}
+
+.error div
+{
+	position: absolute;
+	top: 32px;
+	left: 56px;
+	font-size: 14px;
+}
+
+.error h2
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	position: absolute;
+	top: 8px;
+	left: 56px;
+}
+
+.warning
+{
+	width: 940px;
+	height: 60px;
+	position: relative;
+	background-image: url("../img/ws_warning.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin-bottom: 10px;
+	color: #bf8325;
+}
+
+.warning div
+{
+	position: absolute;
+	top: 32px;
+	left: 56px;
+	font-size: 14px;
+}
+
+.warning h2
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	position: absolute;
+	top: 8px;
+	left: 56px;
+}
+
+.success
+{
+	width: 940px;
+	height: 60px;
+	position: relative;
+	background-image: url("../img/ws_success.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin-bottom: 10px;
+	color: #3a9805;
+}
+
+.success div
+{
+	position: absolute;
+	top: 32px;
+	left: 56px;
+	font-size: 14px;
+}
+
+.success h2
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	position: absolute;
+	top: 8px;
+	left: 56px;
+}
+
+.bigIcons
+{
+	width: 940px;
+	height: 142px;
+	overflow: hidden;
+	background-image: url("../img/ws_bigicons_bg.png");
+	background-position: top center;
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+}
+
+.bigIcon
+{
+	float: left;
+	width: 128px;
+	text-align: center;
+	padding-top: 28px;
+	padding-left: 4px;
+}
+
+.bigIconText
+{
+	padding-top: 8px;
+}
+
+.bigIconText a
+{
+	text-decoration: none;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 12px;
+}
+
+.box
+{
+	margin-bottom: 10px;
+}
+
+.box h2
+{
+	margin: 0px;
+	padding: 0px;
+	height: 52px;
+	line-height: 42px;
+	background-image: url("../img/ws_box_header.png");
+	background-position: top center;
+	padding: 0px 14px;
+	color: #005ca2;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.box h2.closed
+{
+	height: 42px;
+	background-image: url("../img/ws_box_header_closed.png");
+}
+
+.box h2.opened
+{
+	height: 52px;
+	background-image: url("../img/ws_box_header.png");
+}
+
+.boxBg
+{
+	background-image: url("../img/ws_box_bg.png");
+}
+
+.boxContent
+{
+
+}
+
+.text
+{
+	width: 920px;
+	padding: 10px;
+	padding-top: 0px;
+}
+
+.text2
+{
+	float: left;
+	width: 440px;
+	padding: 10px;
+	padding-top: 0px;
+}
+
+.text3
+{
+	float: left;
+	width: 280px;
+	padding: 10px;
+	padding-top: 0px;
+}
+
+.text4
+{
+	float: left;
+	width: 200px;
+	padding: 10px;
+	padding-top: 0px;
+}
+
+.box2
+{
+	width: 460px;
+	float: left;
+}
+
+.box2 h2
+{
+	margin: 0px;
+	padding: 0px;
+	height: 52px;
+	line-height: 42px;
+	background-image: url("../img/ws_box_2column_header.png");
+	background-position: top center;
+	padding: 0px 14px;
+	color: #005ca2;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.box2 h2.closed
+{
+	height: 42px;
+	background-image: url("../img/ws_box_2column_header_closed.png");
+}
+
+.box2 h2.opened
+{
+	height: 52px;
+	background-image: url("../img/ws_box_2column_header.png");
+}
+
+.box2Bg
+{
+	background-image: url("../img/ws_box_2column_bg.png");
+	padding: 10px;
+	padding-top: 0px;
+}
+
+.box2Content
+{
+	background-color: white;
+}
+
+.dataGrid
+{
+	padding: 0px 10px;
+}
+
+.dataGridControl
+{
+	height: 40px;
+	line-height: 40px;
+}
+
+.dataGridControlButtons
+{
+	float: left;
+}
+
+.dataGridPages
+{
+	float: right;
+	font-size: 13px;
+	font-weight: bold;
+	color: #005ca2;
+	line-height: 40px;
+	padding-right: 10px;
+}
+
+.dataGridPages img
+{
+	vertical-align: middle;
+	padding-bottom: 4px;
+}
+
+.dataGridControlButtons a
+{
+	color: #333;
+	text-decoration: none;
+	padding-right: 8px;
+}
+
+.dataGridControlButtons
+{
+	font-size: 13px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.dataGridControlButtons img
+{
+	vertical-align: middle;
+	padding-bottom: 4px;
+}
+
+.selectField
+{
+	padding: 0px 10px;
+}
+
+.selectFieldName
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.fileUpload
+{
+	padding: 0px 10px;
+}
+
+.fileUploadName
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.checkBox, .radioButton
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.selectField select
+{
+	padding: 0px;
+	margin: 0px;
+	width: 920px;
+	height: 32px;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	font-size: 14px;
+	line-height: 32px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	outline: none;
+}
+
+.textArea
+{
+	padding: 0px 10px;
+}
+
+.textAreaName
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.textAreaBg
+{
+	width: 920px;
+	height: 160px;
+	background-image: url("../img/ws_form_textarea.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+.textAreaBg textarea
+{
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	font-size: 12px;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	width: 900px;
+	height: 144px;
+}
+
+.richTextArea
+{
+	padding: 10px;
+	padding-bottom: 0px;
+}
+
+.richTextArea textarea
+{
+	width: 100%;
+}
+
+.textField
+{
+	padding: 0px 10px;
+	height: 76px;
+	width: 920px;
+}
+
+.textFieldName
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.textFieldBg
+{
+	width: 920px;
+	height: 38px;
+	background-image: url("../img/ws_form_textfield.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+#fechaTareas, #tipoAgente, #empleado {
+    width: 80px;
+}
+
+#selPagAlto, #selPagBajo{
+    width: 47px;
+}
+
+.textFieldBg input
+{
+	position: absolute;
+	top: 4px;
+	left: 8px;
+	font-size: 12px;
+	line-height: 28px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background: none;
+	width: 900px;
+	height: 28px;
+}
+
+.textField2
+{
+	float: left;
+	width: 440px;
+	height: 76px;
+	padding: 0 10px;
+}
+
+.textField2Padding
+{
+	padding-right: 30px;
+}
+
+.textField2Name
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.textField2Bg
+{
+	width: 440px;
+	height: 38px;
+	background-image: url("../img/ws_form_textfield2.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+.textField2Bg input
+{
+	position: absolute;
+	top: 5px;
+	left: 8px;
+	font-size: 14px;
+	line-height: 28px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background: none;
+	width: 440px;
+	height: 28px;
+}
+
+.textField3
+{
+	float: left;
+	width: 280px;
+	height: 76px;
+	padding: 0px 10px;
+}
+
+.textField3Padding
+{
+	padding-right: 30px;
+}
+
+.textField3Name
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.textField3Bg
+{
+	width: 280px;
+	height: 38px;
+	background-image: url("../img/ws_form_textfield3.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+.textField3Bg input
+{
+	position: absolute;
+	top: 5px;
+	left: 8px;
+	font-size: 14px;
+	line-height: 28px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background: none;
+	width: 225px;
+	height: 28px;
+}
+
+.textField4
+{
+	float: left;
+	width: 200px;
+	height: 76px;
+	padding: 0px 10px;
+}
+
+.textField4Padding
+{
+	padding-right: 30px;
+}
+
+.textField4Name
+{
+	height: 38px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #005ca2;
+	font-size: 14px;
+	padding-left: 8px;
+}
+
+.textField4Bg
+{
+	width: 200px;
+	height: 38px;
+	background-image: url("../img/ws_form_textfield4.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+}
+
+.textField4Bg input
+{
+	position: absolute;
+	top: 5px;
+	left: 8px;
+	font-size: 14px;
+	line-height: 28px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	background: none;
+	width: 202px;
+	height: 28px;
+}
+
+.buttons
+{
+	width: 940px;
+	height: 32px;
+	background-image: url("../img/ws_buttons_bg.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+	overflow: hidden;
+	padding: 10px 0px;
+}
+
+.box .buttons
+{
+	width: 920px;
+	height: 32px;
+	padding: 10px 0px;
+	margin: 0px 10px;
+	margin-top: 10px;
+	background-color: #ecf2f9;
+}
+
+.button
+{
+	height: 32px;
+	line-height: 32px;
+	background-image: url("../img/ws_button_bg.jpg");
+	background-repeat: repeat-x;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	float: left;
+}
+
+.buttonLeft, .buttonRight
+{
+	float: left;
+}
+
+.button a
+{
+	color: white;
+	text-decoration: none;
+}
+
+.button img
+{
+	vertical-align: middle;
+	padding-bottom: 3px;
+}
+
+.buttonWrap
+{
+	float: left;
+	margin-left: 10px;
+}
+
+.infoColumn, .infoColumnUp, .infoColumnDown, .infoColumnSame
+{
+	float: left;
+	width: 200px;
+	height: 70px;
+	background-image: url("../img/ws_sep.png");
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding: 12px 0px;
+	margin: 0px 10px;
+	position: relative;
+}
+
+.infoColumnIcon
+{
+	position: absolute;
+	top: 16px;
+	left: 0px;
+}
+
+.infoColumnNumber
+{
+	position: absolute;
+	top: 23px;
+	left: 48px;
+	line-height: 24px;
+	height: 24px;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	padding-left: 10px;
+}
+
+.infoColumnUp .infoColumnNumber
+{
+	color: #4e7310;
+	background-image: url("../img/quick_info_up_left.png");
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+
+.infoColumnUp .infoColumnNumberBg
+{
+	background-image: url("../img/quick_info_up_right.png");
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding-right: 8px;
+}
+
+.infoColumnDown .infoColumnNumber
+{
+	color: #870812;
+	background-image: url("../img/quick_info_down_left.png");
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+
+.infoColumnDown .infoColumnNumberBg
+{
+	background-image: url("../img/quick_info_down_right.png");
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding-right: 8px;
+}
+
+.infoColumnSame .infoColumnNumber
+{
+	color: #333;
+	background-image: url("../img/quick_info_same_left.png");
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+
+.infoColumnSame .infoColumnNumberBg
+{
+	background-image: url("../img/quick_info_same_right.png");
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding-right: 8px;
+}
+
+.infoColumn p, .infoColumnUp p, .infoColumnDown p, .infoColumnSame p
+{
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.infoColumn div
+{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.infoColumn p
+{
+	color: #666;
+}
+
+.infoColumnUp p
+{
+	color: #4e7310;
+}
+
+.infoColumnDown p
+{
+	color: #870812;
+}
+
+.infoColumnSame p
+{
+	color: #333;
+}
+
+.last
+{
+	background: none;
+}
+
+.space1
+{
+	padding-top: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+.space3
+{
+	padding-top: 3px;
+}
+
+.space
+{
+	padding-top: 6px;
+}
+
+.space10
+{
+	padding-top: 10px;
+}
+
+.vSpace10
+{
+	float: left;
+	width: 10px;
+	font-size: 1px;
+	line-height: 1px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.vSpace20
+{
+	float: left;
+	width: 20px;
+	font-size: 1px;
+	line-height: 1px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.space12
+{
+	padding-top: 12px;
+}
+
+.space24
+{
+	padding-top: 24px;
+}
+
+.space30
+{
+	padding-top: 30px;
+}
+
+.clear
+{
+	clear: both;
+}
+
+img
+{
+	border: 0px;
+}
+
+input, textarea
+{
+	outline: none;
+}
+
+a
+{
+	color: #005ca2;
+	text-decotation: underline;
+}
+
+a:hover
+{
+	text-decoration: none;
+}
+
+p
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	line-height: 20px;
+	
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+#content table
+{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#content table thead tr
+{
+	height: 36px;
+	color: #005ca2;
+	font-size: 12px;
+	background-color: #e0e8f2;
+	line-height: 36px;
+}
+
+#content table tfoot tr
+{
+	height: 40px;
+	font-size: 12px;
+}
+
+#content table tfoot tr td
+{
+	text-align: center;
+}
+
+#content table thead tr a
+{
+	color: #005ca2;
+}
+
+#content table thead tr th
+{
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 2px solid #ced6e0;
+	text-align: center;
+	padding: 0px 1px;
+}
+
+#content table tbody tr
+{
+	height: 40px;
+	font-size: 12px;
+}
+
+#content table tbody tr td
+{
+	padding: 0px;
+	margin: 0px;
+	padding: 0px 3px;
+	text-align: center;
+}
+
+#content table tbody tr.highlight
+{
+	background-color: #f3f7fc;
+}
+
+#content .dataGrid table thead tr
+{
+	background: none;
+	border: 0px;
+	height: 40px;
+}
+
+#content .dataGrid table
+{
+	background-image: url("../img/ws_datagrid_header.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+#content .dataGrid table thead tr th
+{
+	border: 0px;
+}
+
+.box div h1, .box div h2, .box div h3, .box div h4, .box div h5, .box div h6
+{
+	color: #005ca2;
+	font-weight: bold;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	cursor: auto;
+	line-height: 22px;
+	height: auto;
+}
+
+.box div h1
+{
+	font-size: 24px;
+	line-height: 28px;
+}
+
+.box div h2
+{
+	font-size: 20px;
+	line-height: 24px;
+	background: none;
+}
+
+.box div h3
+{
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.box div h4
+{
+	font-size: 16px;
+	line-height: 18px;
+}
+
+.box div h5
+{
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.box div h6
+{
+	font-size: 12px;
+	line-height: 14px;
+}
