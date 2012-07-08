@@ -115,7 +115,7 @@
                                                                 <table class="horiz">
                                                                 <thead>
                                                                     <tr>
-                                                                    <th>Nombre de Puta</th>
+                                                                    <th>Nombre de Empleado</th>
                                                                     <th>Fecha Tarea</th>
                                                                     <th>Hora Inicio</th>
                                                                     <th>Hora Fin</th>
