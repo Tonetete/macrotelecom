@@ -127,7 +127,7 @@
                                                                 <tr>
                                                                     <td>                                                                    
                                                                         
-                                                                        <?php listarEmpleados('Seleccionar...'); ?>
+                                                                        <?php listarEmpleados('tarea','Seleccionar...'); ?>
                                                                     </td>
                                                                     <td>               
                                                                      
@@ -164,14 +164,29 @@
                                                             </form>
                                                          </div>
                                                     
-                                                      <div id="menuOptions">
-							<img id="anadirTarea"src="img/add.png" alt="New" /> <a href="#">Nueva Tarea</a>
+                                                      <div style="float:left" id="menuOptions">
+						       
+                                                        <img id="anadirTarea"src="img/add.png" alt="New" /> <a href="#">Nueva Tarea</a>
                                                         <img class="borrarTodos" src="img/delete.png" alt="Remove" /> <a href="#">Borrar sel.</a>							
                                                         <!-- Procedimiento para listar las fechas de las tareas desde el mínimo hasta el máximo trabajado-->
                                                         <img id src="img/calendar_view_month.png" alt="consultarFecha" /> <a href="#">Filtrar mes</a><?php insertarFechas(); ?> 
                                                         <img id src="img/group.png" alt="consultarAgente" /> <a href="#">Agente</a><?php listarAgentes(); ?> 
-                                                        <img id src="img/user.png" alt="consultarEmpleado" /> <a href="#">Empleado</a><?php listarEmpleados('Todos'); ?>
+                                                        <img id src="img/user.png" alt="consultarEmpleado" /> <a href="#">Empleado</a><?php listarEmpleados('listar','Todos'); ?>
+                                                        <img class="firstPag" id="firstUp" src="img/resultset_first.png" alt="First" /> 
+                                                        <img class="antPag" id="antUp" src="img/resultset_previous.png" alt="Previous" /> 
+                                                        <select id="selPagAlto" name="pageBottom">                                                            
+                                                        </select> 
+                                                        <img class="sigPag" id="sigUp" src="img/resultset_next.png" alt="Next" /> 
+                                                        <img class="lastPag" id="lastUp"src="img/resultset_last.png" alt="Last" />
+                                                       
+                                                       <div style="float:left">   
+                                                        Fecha Inicio: <img id src="img/calendar_view_month.png" alt="consultarFecha" /> <input style="width:70px;" class="validate[required,custom[date]] select-input rangoFechas datepicker" id="dateini"/>
+                                                        Fecha Fin: <img id src="img/calendar_view_month.png" alt="consultarFecha" /> <input style="width:70px;" class="validate[required,custom[date]] select-input rangoFechas datepicker" id="datefin"/>                                                                                                                       
                                                         
+                                                       </div>
+                                                          <div style="float: right;">
+                                                                
+                                                            </div>
                                                       </div>
 						</div>
 
@@ -217,15 +232,13 @@
 						</div>
 
 						<div class="dataGridPages">
-							Página: <img id="firstDown" src="img/resultset_first.png" alt="First" /> 
-                                                        <img id="antDown" src="img/resultset_previous.png" alt="Previous" /> 
-                                                        <select id="selPagBajo" name="pageBottom">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
+                                                    
+                                                        <img class="firstPag" id="firstDown" src="img/resultset_first.png" alt="First" /> 
+                                                        <img class="antPag" id="antDown" src="img/resultset_previous.png" alt="Previous" /> 							
+                                                        <select id="selPagBajo" name="pageBottom">                                                            
                                                         </select> 
-                                                        <img id="sigDown" src="img/resultset_next.png" alt="Next" /> 
-                                                        <img id="lastDown"src="img/resultset_last.png" alt="Last" />&nbsp;
+                                                        <img class="sigPag" id="sigDown" src="img/resultset_next.png" alt="Next" /> 
+                                                        <img class="lastPag" id="lastDown"src="img/resultset_last.png" alt="Last" />&nbsp;                                                        
                                                         <!--Registros por página: 
                                                         <select name="perPageBottom">
                                                             <option value="25">25</option><option value="50">50</option>
