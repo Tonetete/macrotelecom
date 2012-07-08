@@ -285,7 +285,7 @@ function consultarTareas2($empleado,$fecha,$fechaIni,$fechaFin,$agente) {
     }
     
     if($empleado!="") {
-        $consulta.= "AND a.nombre='".$empleado."' ";
+        $consulta.= "AND a.idAgente='".$empleado."' ";
     }
     
     if($agente!="") {
