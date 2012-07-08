@@ -4,7 +4,6 @@
 
 $(document).ready(function(){
   $("#anadirTarea").click(function(){
-      //alert('culo');
     $("#formTarea").slideDown();
   });
 
@@ -13,7 +12,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#cancelarTarea").click(function(){
-      //alert('culo');
     $("#formTarea").slideUp();
   });
 
@@ -35,7 +33,10 @@ $(document).ready(function() {
                             showLeadingZero: false,
                             showOn: 'both',
                     button: '.timepicker_fin_button'
-                    });                                                                                                                                                                            
+                    });     
+                    
+    $("#datefin").val("");
+    $("#dateini").val("");
     //$(".timepicker_inicio_mod").timepicker({});                                                                                    
     //$(".timepicker_fin_mod").timepicker({}); //                                                                                   
 });
@@ -54,20 +55,61 @@ $(document).ready(function(){
               }
               var datos = data;
               var llamada = function() {resultado(datos);};
-              setTimeout(llamada,300);  
+              setTimeout(llamada,150);  
              }           
       });
 });
 
+$(function() {
+   $('.rangoFechas').change(function() {       
+       if($("#datefin").val()!="" && $("#dateini").val() != "") {
+           if(Date.parse($("#datefin").val()) < Date.parse($("#dateini").val())) {
+              alert("La fecha final no puede ser menor que la fecha inicial.");
+          }       
+          else {             
+           $("#fechaTareas option:first-child").first().attr('selected','selected');
+           var pag=1;
+            
+           $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+            beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
+          success: function(data) {              
+              $("#selPagAlto").empty();
+              $("#selPagBajo").empty();
+              var x = data[0].pagUltima;  
+                for (j=1; j<=x; j++ ) {
+                $("#selPagAlto").append(new Option(j,j));
+                $("#selPagBajo").append(new Option(j,j));
+                }
+                $("#selPagBajo").val(pag).attr('selected',true);
+                $("#selPagAlto").val(pag).attr('selected',true);  
+                var datos = data;
+                var llamada = function() {resultado(datos);};
+                setTimeout(llamada,150); 
+             }           
+          });
+        }
+       }    
+   });       
+}); 
 
+
+$(function() {
+   $("#limpiarRangoFechas").click(function() { 
+       $("#datefin").val("");
+       $("#dateini").val("");
+      
+   }); 
+});
 
 // Manejador de eventos que cogerá los valores de los selects para realizar el filtro de búsqueda
 
 $(function() {
-    $("select").change(function() {
+    $("#menuOptions > select").change(function() {
          var nombre = $(this).val();
          var fecha=""; var agentes=""; var empleado="";
-         var pag="";
+         var pag=""; var fechaIni=""; var fechaFin="";
          $("#menuOptions select").each(function() {
              if($(this).attr("id")=="fechaTareas") {
                  fecha = $(this).val(); 
@@ -80,10 +122,36 @@ $(function() {
              else if($(this).attr("id")=="empleado") {
                  empleado = $(this).val(); 
              }            
-         });         
-       var dataString = "fecha="+fecha+"&agente="+agentes+"&emp="+empleado;  
-       $("#selPagAlto option:first-child").first().attr('selected','selected');
-       $("#selPagBajo option:first-child").first().attr('selected','selected');
+         });       
+  
+       if($(this).attr('id')=="fechaTareas") {
+           $("#datefin").val("");
+           $("#dateini").val("");
+           
+           fechaIni="";
+           fechaFin="";
+       }
+       
+       if($("#dateFin").val()!="" && $("#dateIni").val() !="") {
+           if(Date.parse($("#dateFin").val()) < Date.parse($("#dateIni").val())) {
+              alert("La fecha final no puede ser menor que la fecha inicial.");
+          }       
+          else {
+              fechaIni = $("#dateini").val();
+              fechaFin = $("#datefin").val();
+         }
+       }
+       
+       
+       
+       var dataString = "fecha="+fecha+"&agente="+agentes+"&emp="+empleado+"&fechaini="+fechaIni+"&fechafin="+fechaFin; 
+       var pag=1;
+          if($(this).attr('id')=="selPagAlto"||$(this).attr('id')=="selPagBajo") {
+                dataString+="&pag="+$(this).val();
+                pag = $(this).val();
+          }  
+        
+      
          $.ajax({type:"GET", url: "ajax/paginador.php", dataType: "json", data: dataString,
              beforeSend: function() {            
             $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
@@ -96,62 +164,28 @@ $(function() {
                 $("#selPagAlto").append(new Option(j,j));
                 $("#selPagBajo").append(new Option(j,j));
                 }
-              var datos = data;
-              var llamada = function() {resultado(datos);};
-              setTimeout(llamada,300);
+                $("#selPagBajo").val(pag).attr('selected',true);
+                $("#selPagAlto").val(pag).attr('selected',true);  
+                var datos = data;
+                var llamada = function() {resultado(datos);};
+                setTimeout(llamada,150);
              }           
       });
     }); 
 });
 
 
-/*$(function(){
-   $("#fechaTareas").change(function(){
-       //alert('entré');
-       $("#selPagAlto option:first-child").first().attr('selected','selected');
-        $("#selPagBajo option:first-child").first().attr('selected','selected');
-       $.ajax({type:"GET", url: "ajax/paginador.php?pag=1&filt="+$("#tipoAgente").val()+"&fecha="+ $("#fechaTareas").val(),
-           dataType: "json", 
-          success: function(data) {    
-              $("#selPagAlto").empty();
-              $("#selPagBajo").empty();
-              var x = data[0].pagUltima;  
-                for (j=1; j<=x; j++ ) {
-                $("#selPagAlto").append(new Option(j,j));
-                $("#selPagBajo").append(new Option(j,j));
-                }
-              resultado(data);  
-             }           
-      });     
-       
-   }); 
-});
 
-$(function(){ 
-  $("#tipoAgente").change(function(){
-      $("#selPagAlto option:first-child").first().attr('selected','selected');
-        $("#selPagBajo option:first-child").first().attr('selected','selected');
-   $.ajax({type:"GET", url: "ajax/paginador.php?pag=1&filt="+$("#tipoAgente").val()+"&fecha="+ $("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {    
-              $("#selPagAlto").empty();
-              $("#selPagBajo").empty();
-              var x = data[0].pagUltima;  
-                for (j=1; j<=x; j++ ) {
-                $("#selPagAlto").append(new Option(j,j));
-                $("#selPagBajo").append(new Option(j,j));
-                }
-              resultado(data);  
-             }           
-      });     
-    });
-});
-
+// Correspondiente a las opciones de seguir adelante la página
 
 $(function() {
-    $("#firstUp").click(function(){
+    $(".firstPag").click(function(){
         $("#selPagAlto option:first-child").first().attr('selected','selected');
         $("#selPagBajo option:first-child").first().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+            beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
           success: function(data) {              
               resultado(data);  
              }           
@@ -159,11 +193,17 @@ $(function() {
     });
 });
 
+
+// Correspondiente a las opciones de seguir adelante la página
+
 $(function() {
-    $("#lastUp").click(function(){
+    $(".lastPag").click(function(){
         $("#selPagAlto option:last-child").last().attr('selected','selected');
         $("#selPagBajo option:last-child").last().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+            beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
           success: function(data) {              
               resultado(data);  
              }           
@@ -173,35 +213,13 @@ $(function() {
 
 
 $(function() {
-    $("#firstDown").click(function(){
-        $("#selPagAlto option:first-child").first().attr('selected','selected');
-        $("#selPagBajo option:first-child").first().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});
-
-
-$(function() {
-    $("#lastDown").click(function(){
-        $("#selPagAlto option:last-child").last().attr('selected','selected');
-        $("#selPagBajo option:last-child").last().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});
-
-$(function() {
-    $("#sigUp").click(function(){
+    $(".sigPag").click(function(){
         $("#selPagAlto option:selected").next().attr('selected','selected');
         $("#selPagBajo option:selected").next().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+            beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
           success: function(data) {              
               resultado(data);  
              }           
@@ -209,11 +227,15 @@ $(function() {
     });
 });
 
+
 $(function() {
-    $("#antUp").click(function(){
+    $(".antPag").click(function(){
         $("#selPagAlto option:selected").prev().attr('selected','selected');
         $("#selPagBajo option:selected").prev().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+            beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
           success: function(data) {              
               resultado(data);  
              }           
@@ -221,54 +243,6 @@ $(function() {
     });
 });
 
-
-$(function() {
-    $("#sigDown").click(function(){
-        $("#selPagAlto option:selected").next().attr('selected','selected');
-        $("#selPagBajo option:selected").next().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});
-
-
-
-$(function() {
-    $("#antDown").click(function(){
-        $("#selPagAlto option:selected").prev().attr('selected','selected');
-        $("#selPagBajo option:selected").prev().attr('selected','selected');
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});
-
-$(function() {
-    $("#selPagAlto").change(function(){
-        $("#selPagBajo").val($(this).val()).attr('selected',true);
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$(this).val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});
-
-$(function() {
-    $("#selPagBajo").change(function(){
-        $("#selPagAlto").val($(this).val()).attr('selected',true);
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$(this).val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-          success: function(data) {              
-              resultado(data);  
-             }           
-      });
-    });
-});*/
 
 function printTareas(data) {
    var options=""
@@ -364,26 +338,26 @@ function resultado(data) {
 
 $(function(){
     $("#ingresarBoton").click(function(){	
-        alert("Tarea introducida.");
-            jQuery("#formID").validationEngine('attach', {            
-                onValidationComplete: function(form, status){
-                if(status){
+        //alert("Tarea introducida.");
+        var ok="";
+        $("#formID").validationEngine('attach');
+             ok= $("#formID").validationEngine('validate');
+                if(ok){
                     var id="";
-                    $.ajax({type:"GET",url:"ajax/insertarTareas.php?user="+$("#empleado").val()+
+                    $.ajax({type:"GET",url:"ajax/insertarTareas.php?user="+$("#empleadoTarea").val()+
                             "&fecha="+$("#date").val()+"&horaini="+$("#timepicker_inicio_insertar").val()+
                             "&horafin="+$("#timepicker_fin_insertar").val()+"&tarea="+$("#tareas").val()+
                             "&uni="+$("#unidades").val(), dataType: 'json',
                         success: function(data) {
                             id=data;
-                            //alert(id);
                            // Una vez introducido se vuelve a mandar una petición ajax para actualizar el grid
-                           $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+                           $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
                                 success: function(data) {              
                                     resultado(data);  
                                    $("#contenido tr").each(function() {                                      
                                        if($(this).find('.idTarea').text()==id) {                                       
                                             $(this).effect("highlight", {color: "yellow"}, 1000);
-                                            //id="";
+                                            id="";
                                        }
                                     });    
                                 }           
@@ -391,9 +365,8 @@ $(function(){
                         }
                     });
                   
-                }
-            }  
-        });
+                }      
+        
     });
 });
 
@@ -406,17 +379,17 @@ $(".eliminar").live('click', function() {
     var conf=confirm("¿Está seguro de que quiere borrar la tarea?");
     if(conf==true) {
         var dataString = 'id='+ id_tarea_val;
-        $.ajax({type: "GET", url: "ajax/borrarTareas.php", dataType: 'json', data: dataString,
+        $.ajax({type: "GET", url: "ajax/borrarTareas.php", data: dataString,
             success: function() {
-                //alert("Tarea borrada.");                            
-            }
-        });
-        // Una vez borrado se vuelve a mandar una petición ajax para actualizar el grid
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
+               // Una vez borrado se vuelve a mandar una petición ajax para actualizar el grid
+            $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
                 success: function(data) {              
                      resultado(data);  
              }           
-         }); 
+           });                            
+          }
+        });
+        
     }
     
 });
@@ -432,19 +405,13 @@ $(function(){
         if(this.checked) {
             var idTarea = $(this).closest("tr").find(".idTarea").text();
             var dataString = "id="+idTarea;
-            $.ajax({type: "GET", url: "ajax/borrarTareas.php", dataType: 'json', data: dataString ,
-                success: function() {
-                    
-                }
-            });
+            $.ajax({type: "GET", url: "ajax/borrarTareas.php", data: dataString});
          }
         });
-        
-        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&filt="+
-                  $("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val(), dataType: "json", 
-                     success: function(data) {              
-                           resultado(data);  
-                  }           
+        $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+                success: function(data) {              
+                        resultado(data);  
+             }           
          }); 
       }
     });
