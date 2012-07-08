@@ -4,7 +4,7 @@
  $RegistrosAMostrar=25;
 
  //estos valores los recibo por GET
- if(isset($_GET['pag'])&&(isset($_GET['agente'])&&isset($_GET['fecha'])&&isset($_GET['emp']))){
+ if(isset($_GET['pag'])&&(isset($_GET['agente'])&&isset($_GET['fecha'])&&isset($_GET['emp'])&&isset($_GET['fechaini'])&&isset($_GET['fechafin']))){
   $RegistrosAEmpezar=($_GET['pag']-1)*$RegistrosAMostrar;
   $PagAct=$_GET['pag'];
   //caso contrario los iniciamos
@@ -13,13 +13,17 @@
   $PagAct=1;
  }
 
- if(isset($_GET['fecha'])&&isset($_GET['agente'])&&isset($_GET['emp'])) {     
+ if(isset($_GET['fecha'])&&isset($_GET['agente'])&&isset($_GET['emp'])&&isset($_GET['fechaini'])&&isset($_GET['fechafin'])) {     
       $agente = $_GET['agente'];   
       $fecha = $_GET['fecha'];
-      $empleado = $_GET['emp'];       
+      $empleado = $_GET['emp'];
+      if($_GET['fechaini']!="" && $_GET['fechafin']!="") {
+            $fechaini = preg_replace('#(\d{2})/(\d{2})/(\d{4})\s(.*)#', '$3-$2-$1 $4', $_GET['fechaini']." 00:00:00");
+            $fechafin = preg_replace('#(\d{2})/(\d{2})/(\d{4})\s(.*)#', '$3-$2-$1 $4', $_GET['fechafin']." 00:00:00");      
+      }
       
-      $Resultado = mysql_query(consultarTareasLimit2($empleado, $fecha, "", "", $agente,$RegistrosAEmpezar,$RegistrosAMostrar));
-      $NroRegistros = mysql_num_rows(mysql_query(consultarTareas2($empleado, $fecha, "", "", $agente)));
+      $Resultado = mysql_query(consultarTareasLimit2($empleado, $fecha, $fechaini, $fechafin, $agente,$RegistrosAEmpezar,$RegistrosAMostrar));
+      $NroRegistros = mysql_num_rows(mysql_query(consultarTareas2($empleado, $fecha, $fechaini, $fechafin, $agente)));
              
    }
    else {
