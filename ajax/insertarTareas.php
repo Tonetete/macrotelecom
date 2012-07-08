@@ -11,8 +11,6 @@
   
      $resTarea = mysql_query("SELECT idTipoTarea FROM TipoTarea WHERE nombre='".$_GET['tarea']."'");
      $tarea = mysql_result($resTarea,0);
-     $resUser = mysql_query("SELECT idAgente FROM Agentes WHERE nombre='".$_GET['user']."'");
-     $user = mysql_result($resUser,0);
      //$resUser = mysql_query("SELECT idAgente FROM Agentes WHERE nombre='".$_GET['user']."'");
      //$user = mysql_result($resUser,0);
      $user = $_GET['user'];
