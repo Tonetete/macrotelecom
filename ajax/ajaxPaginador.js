@@ -43,13 +43,18 @@ $(document).ready(function() {
 
 $(document).ready(function(){
     $.ajax({type:"GET", url: "ajax/paginador.php?pag=1", dataType: "json", 
+          beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');     
+          },
           success: function(data) {            
             var x = data[0].pagUltima;  
             for (j=1; j<=x; j++ ) {
                 $("#selPagAlto").append(new Option(j,j));
                 $("#selPagBajo").append(new Option(j,j));
               }
-              resultado(data);  
+              var datos = data;
+              var llamada = function() {resultado(datos);};
+              setTimeout(llamada,300);  
              }           
       });
 });
@@ -80,6 +85,9 @@ $(function() {
        $("#selPagAlto option:first-child").first().attr('selected','selected');
        $("#selPagBajo option:first-child").first().attr('selected','selected');
          $.ajax({type:"GET", url: "ajax/paginador.php", dataType: "json", data: dataString,
+             beforeSend: function() {            
+            $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
+          },
           success: function(data) {    
               $("#selPagAlto").empty();
               $("#selPagBajo").empty();
@@ -88,7 +96,9 @@ $(function() {
                 $("#selPagAlto").append(new Option(j,j));
                 $("#selPagBajo").append(new Option(j,j));
                 }
-              resultado(data);  
+              var datos = data;
+              var llamada = function() {resultado(datos);};
+              setTimeout(llamada,300);
              }           
       });
     }); 
