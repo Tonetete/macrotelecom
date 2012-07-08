@@ -292,6 +292,10 @@ function consultarTareas2($empleado,$fecha,$fechaIni,$fechaFin,$agente) {
         $consulta.= "AND p.nombre='".$agente."' ";
     }
     
+    if($fechaIni!="" && $fechaFin!="") {
+        $consulta.= "AND t.horaInicio BETWEEN '".$fechaIni."' AND '".$fechaFin."' ";
+    }
+    
     $consulta.= "ORDER BY t.horaInicio DESC ";
     
     return $consulta;
