@@ -13,6 +13,9 @@
      $tarea = mysql_result($resTarea,0);
      $resUser = mysql_query("SELECT idAgente FROM Agentes WHERE nombre='".$_GET['user']."'");
      $user = mysql_result($resUser,0);
+     //$resUser = mysql_query("SELECT idAgente FROM Agentes WHERE nombre='".$_GET['user']."'");
+     //$user = mysql_result($resUser,0);
+     $user = $_GET['user'];
      $dateIni = $_GET['fecha']." ".$_GET['horaini'].":00";
      $dateIni = preg_replace('#(\d{2})/(\d{2})/(\d{4})\s(.*)#', '$3-$2-$1 $4', $dateIni);
      $dateFin = $_GET['fecha']." ".$_GET['horafin'].":00";
