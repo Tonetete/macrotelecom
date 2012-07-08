@@ -91,12 +91,19 @@ function listarAgentes() {
 // Listamos los empleados, la opción es pasada para imprimirlo como tarea o filtro, sólo cambia el mensaje
 // del valor por defecto
 
-function listarEmpleados($opcion) {
+function listarEmpleados($tipo,$opcion) {
     $res ="SELECT idAgente, nombre FROM Agentes ORDER BY nombre ASC;";
     $res = mysql_query($res);
     
-    echo '<select id="empleado">';
-    echo '<option value="">'.$opcion.'</option>';
+    if($tipo=='tarea'){
+        echo '<select id="empleadoTarea">';
+    }
+    else if($tipo=='listar') {
+        echo '<select id="empleado">';
+        echo '<option value="">'.$opcion.'</option>';
+    }
+    
+    
     while($row = mysql_fetch_array($res)) {
         echo '<option value="'.$row[0].'">'.$row[1].'</option>';
     }
