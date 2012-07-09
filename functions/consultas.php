@@ -7,7 +7,7 @@ require_once('calculos.php');
 $consultaTareas = "SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
 DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
 DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste',  tipo.precioTarea*t.unidades   AS 'Comision'
+tipo.nombre AS 'TipoTarea', t.unidades AS 'Unidades', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste',  tipo.precioTarea*t.unidades   AS 'Comision'
 FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
 WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil ";
 
