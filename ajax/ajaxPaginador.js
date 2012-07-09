@@ -70,7 +70,7 @@ $(function() {
            $("#fechaTareas option:first-child").first().attr('selected','selected');
            var pag=1;
             
-           $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
+           $.ajax({type:"GET", url: "ajax/paginador.php?pag="+pag+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
             beforeSend: function() {            
             $("#contenido").html('<div style="height:200px;"><img style="margin-top:20px;position: absolute; left:368px;"src="img/loading.gif"></div>');         
           },
@@ -283,18 +283,19 @@ function resultado(data) {
                
                if(i%2==0) clase = "''"; else clase="highlight";
                $("#contenido").append('<tr class="'+clase+'">'+
-               '<td style="display:none;"><span class="idTarea" title="'+i+'" id="id-tarea-'+i+'">'+data[index].idTarea+'</span></td>'+    
-               '<td><span class="tipoAgente" title="'+i+'" id="tipo-agente-'+i+'"">'+data[index].TipoAgente+"</span></td>"+
-               '<td><span class="nombreAgente"title="'+i+'" id="nombre-'+i+'">'+data[index].Nombre+'</span></td>'+               
-               '<td class="editar"><span class ="fechaTarea" title="'+i+'" id="fecha-'+i+'">'+data[index].Fecha+'</span><input style="display:none; width: 70px;" class="validate[required,custom[date]] text-input datepickerEdit" type="text" name="date" id="fecha-input-'+i+'" /></td>'+               
-               '<td class="editar"><span class="iniTarea" title="'+i+'" id="inicio-'+i+'">'+data[index].Inicio+'</span><input style="display:none; width: 70px;" id="inicio-input-'+i+'" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerIniEdit-'+i+'" type="text" style="width: 70px"  value="'+data[index].Inicio+'" /></td>'+               
-               '<td class="editar"><span class="finTarea" title="'+i+'" id="fin-'+i+'">'+data[index].Fin+'</span><input style="display:none; width: 70px;" id="fin-input-'+i+'" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerFinEdit-'+i+'" type="text" style="width: 70px"  value="'+data[index].Fin+'" /></td>'+    
-               '<td><span class="intervaloTarea"title="'+i+'" id="intervalo-'+i+'">'+data[index].Intervalo+'</span></td>'+               
-               '<td class="editar"><span class="tipoTarea" title="'+i+'" id="tipo-tarea-'+i+'">'+data[index].TipoTarea+'</span><select style="display:none; width: 78px" id="tipo-tarea-select-'+i+'" class="editbox">'+optionsTareas+'</select></td>'+               
-               '<td><span class="costeTarea" title="'+i+'" id="coste-'+i+'">'+data[index].Coste+'</span></td>'+               
-               '<td><span class="comisionTarea" title="'+i+'" id="comision-'+i+'">'+data[index].Comision+'</span></td>'+                              
-               '<td><img title="'+i+'" class="eliminar" id="deleteTarea-'+i+'" src="img/delete.png" alt="Edit" /></td>'+
-               '<td><input title="'+i+'" id="check-borrar-'+i+'" type="checkbox" name="delete[]" value="" /></td></tr>');
+               '<td style="display:none;"><span class="idTarea">'+data[index].idTarea+'</span></td>'+    
+               '<td><span class="tipoAgente">'+data[index].TipoAgente+"</span></td>"+
+               '<td><span class="nombreAgente">'+data[index].Nombre+'</span></td>'+               
+               '<td class="editar"><span class ="fechaTarea">'+data[index].Fecha+'</span><input style="display:none; width: 70px;" class="validate[required,custom[date]] text-input datepickerEdit" type="text" name="date" /></td>'+               
+               '<td class="editar"><span class="iniTarea">'+data[index].Inicio+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerIniEdit" type="text" style="width: 70px"  value="'+data[index].Inicio+'" /></td>'+               
+               '<td class="editar"><span class="finTarea">'+data[index].Fin+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerFinEdit" type="text" style="width: 70px"  value="'+data[index].Fin+'" /></td>'+    
+               '<td><span class="intervaloTarea">'+data[index].Intervalo+'</span></td>'+               
+               '<td class="editar"><span class="tipoTarea">'+data[index].TipoTarea+'</span><select style="display:none; width: 78px" class="tareaEdit">'+optionsTareas+'</select></td>'+               
+               '<td class="editar"><span class="unidades">'+data[index].Unidades+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="text-input unidadesEdit" type="text" style="width: 70px"  value="'+data[index].Unidades+'" /></td>'+               
+               '<td><span class="costeTarea">'+data[index].Coste+'</span></td>'+               
+               '<td><span class="comisionTarea">'+data[index].Comision+'</span></td>'+                              
+               '<td><img class="eliminar" src="img/delete.png" alt="Edit" /></td>'+
+               '<td><input type="checkbox" name="delete[]" value="" /></td></tr>');
                
                
                // Seleccionamos la opción por defecto que debe presentar el dropdownlist de tareas
@@ -303,24 +304,7 @@ function resultado(data) {
                
            // Cuando se genera el código al hacer el append se llama después a las funciones JQuery que generen el plugin, en este caso generamos los timepicker después de haber escrito el código del
            // timepicker en Inicio y Fin, si se llaman antes, no funcionarán ya que se llaman a las funciones antes de haber sido generado el código RECUÉRDALO !!!!           
-              
-               
-           // Establecemos la fecha por defecto la que ya teníamos asignada
-               
-               //$('.datepickerEdit-'+i).datepicker();
-               //$('.datepickerEdit-'+i).val('01/01/2010');
-               //$('.datepickerEdit-'+i).datepicker("option","dateFormat","dd/mm/yy");
-               //$('.datepickerEdit-'+i).datepicker('setDate', new Date());
-               $('.timepickerIniEdit-'+i).timepicker({
-                   showNowButton: true,
-                    showDeselectButton: true, // removes the highlighted time for when the input is empty.
-                    showCloseButton: true
-               });                                  
-               $('.timepickerFinEdit-'+i).timepicker({
-                   showNowButton: true,
-                    showDeselectButton: true,                   // removes the highlighted time for when the input is empty.
-                    showCloseButton: true
-               });                                  
+                                                 
                
            i++;
            });
@@ -329,6 +313,16 @@ function resultado(data) {
                  $(this).find('.datepickerEdit').datepicker();
                  $(this).find('.datepickerEdit').val($(this).find('.fechaTarea').text());
                  //$(this).effect("highlight", {color: "yellow"}, 1000);
+                 $(this).find('.timepickerIniEdit').timepicker({
+                   showNowButton: true,
+                    showDeselectButton: true, // removes the highlighted time for when the input is empty.
+                    showCloseButton: true
+                 });                                  
+                $(this).find('.timepickerFinEdit').timepicker({
+                   showNowButton: true,
+                    showDeselectButton: true,                   // removes the highlighted time for when the input is empty.
+                    showCloseButton: true
+               });
            });
   }
    
@@ -374,8 +368,8 @@ $(function(){
 // lanzar el ajax que borrará la tarea específica
 
 $(".eliminar").live('click', function() {
-    var ID= $(this).attr("title");
-    var id_tarea_val = $("#id-tarea-"+ID).text();
+    var fila = $(this).closest("tr");    
+    var id_tarea_val = fila.find(".idTarea").text();
     var conf=confirm("¿Está seguro de que quiere borrar la tarea?");
     if(conf==true) {
         var dataString = 'id='+ id_tarea_val;
@@ -420,61 +414,75 @@ $(function(){
 
 
 
-$(".editar").live('click',function() {
-    var ID=$(this).find("span").attr("title");
-    $("#fecha-"+ID).hide();
-    $("#inicio-"+ID).hide();
-    $("#fin-"+ID).hide();
-    $("#tipo-tarea-"+ID).hide();
+$(".editar").live('click',function() {    
+    var fila = $(this).closest("tr");
     
-    $("#fecha-input-"+ID).show();
-    $("#inicio-input-"+ID).show();
-    $("#fin-input-"+ID).show();
-    $("#tipo-tarea-select-"+ID).show();
+    fila.find(".fechaTarea").hide();
+    fila.find(".iniTarea").hide();
+    fila.find(".finTarea").hide();
+    fila.find(".tipoTarea").hide();
+    fila.find(".unidades").hide();
+    
+    fila.find(".datepickerEdit").show();
+    fila.find(".timepickerIniEdit").show();
+    fila.find(".timepickerFinEdit").show();
+    fila.find(".tareaEdit").show();
+    fila.find(".unidadesEdit").show();
+    
     }).live('change',function(e) {
-    var ID=$(this).find("span").attr('title');
-    var fecha_val =$("#fecha-input-"+ID).val();
-    var inicio_val =$("#inicio-input-"+ID).val();
-    var fin_val =$("#fin-input-"+ID).val();
-    var tipo_tarea_val =$("#tipo-tarea-select-"+ID+" option:selected").text();//New record
-    var id_tarea_val = $("#id-tarea-"+ID).text();
+    var fila = $(this).closest("tr");
+    
+    var id_tarea_val=fila.find(".idTarea").text();
+    var fecha_val =  fila.find(".datepickerEdit").val();
+    var inicio_val =  fila.find(".timepickerIniEdit").val();
+    var fin_val = fila.find(".timepickerFinEdit").val();
+    var tipo_tarea_val =fila.find(".tareaEdit option:selected").text();
+    var unidades_val = fila.find(".unidadesEdit").val();
+    //var id_tarea_val = $("#id-tarea-"+ID).text();
+    var coste_val =""; var intervalo_val =""; var comision_val ="";
+    
+    var fila = $(this).closest("tr");
     
 
     var dataString = 'id='+ id_tarea_val +'&fecha='+fecha_val+'&inicio='+inicio_val+'&fin='+
-    fin_val+'&tarea='+tipo_tarea_val;
-
-    if(fecha_val.length>0&& inicio_val.length>0 && fin_val.length>0 && tipo_tarea_val.length>0){
-    $.ajax({
-        type: "GET",
-        url: "ajax/modificarTareas.php",
-        dataType: 'json',
-        data: dataString,
-        cache: false,
-        beforeSend: function() {
-        $("#fecha-"+ID).html(fecha_val);
-        $("#inicio-"+ID).html(inicio_val);
-        $("#fin-"+ID).html(fin_val);
-        $("#tipo-tarea-"+ID).html(tipo_tarea_val);
+    fin_val+'&tarea='+tipo_tarea_val+"&unidades="+unidades_val;
+    //alert($(this).closest("tr").find(".fechaTarea").text());
+    if(fecha_val.length>0&& inicio_val.length>0 && fin_val.length>0 && tipo_tarea_val.length>0 && unidades_val>=0){
+    $.ajax({ type: "GET", url: "ajax/modificarTareas.php", dataType: 'json', data: dataString, cache: false,
         
-        $("#fecha-"+ID).show();
-        $("#inicio-"+ID).show();
-        $("#fin-"+ID).show();
-        $("#tipo-tarea-"+ID).show();
-
-        $("#fecha-input-"+ID).hide();
-        $("#inicio-input-"+ID).hide();
-        $("#fin-input-"+ID).hide();//New record
-        $("#tipo-tarea-select-"+ID).hide();//New record
-        //e.stopImmediatePropagation();
-        },
         success: function(data) {
-            $.each(data,function(i,item){                
-                $("#intervalo-"+ID).text(data[i].Intervalo);
-                $("#coste-"+ID).text(data[i].Coste);
-                $("#comision-"+ID).text(data[i].Comision);
+            $.each(data,function(i,item){
+                
+                fila.find(".costeTarea").text(data[i].Coste);
+                fila.find(".comisionTarea").text(data[i].Comision);
+                fila.find(".intervaloTarea").text(data[i].Intervalo);               
             });
         }
        });
+       
+       fila.find(".fechaTarea").html(fecha_val);
+       fila.find(".fechaTarea").show();
+       fila.find(".datepickerEdit").hide();
+       
+       fila.find(".iniTarea").html(inicio_val);
+       fila.find(".iniTarea").show();
+       fila.find(".timepickerIniEdit").hide();
+       
+       fila.find(".finTarea").html(fin_val);
+       fila.find(".finTarea").show();
+       fila.find(".timepickerFinEdit").hide();
+       
+       fila.find(".tipoTarea").html(tipo_tarea_val);
+       fila.find(".tipoTarea").show();
+       fila.find(".tareaEdit").hide();
+       
+       fila.find(".unidades").html(unidades_val);
+       fila.find(".unidades").show();
+       fila.find(".unidadesEdit").hide();
+       
+       fila.find(".costeTarea").text(coste_val);
+       fila.find(".comisionTarea").text(comision_val);
+       fila.find(".intervaloTarea").text(intervalo_val);
     }
     else
     {
