@@ -172,6 +172,7 @@
                                                         <img id src="img/calendar_view_month.png" alt="consultarFecha" /> <a href="#">Filtrar mes</a><?php insertarFechas(); ?> 
                                                         <img id src="img/group.png" alt="consultarAgente" /> <a href="#">Agente</a><?php listarAgentes(); ?> 
                                                         <img id src="img/user.png" alt="consultarEmpleado" /> <a href="#">Empleado</a><?php listarEmpleados('listar','Todos'); ?>
+                                                        <span style="display:none; float:right; margin-right: 30px;" id="retribEmpleado"></span>
                                                         <img class="firstPag" id="firstUp" src="img/resultset_first.png" alt="First" /> 
                                                         <img class="antPag" id="antUp" src="img/resultset_previous.png" alt="Previous" /> 
                                                         <select id="selPagAlto" name="pageBottom">                                                            
@@ -198,7 +199,7 @@
 						<table>
 							<thead>
 								<tr>	
-                                                                    <th>Tipo de Agente</th>						
+                                                                    <th>Agente</th>						
 								    <th>Nombre</th>
 								    <th>Fecha</th>
 								    <th>Inicio</th>

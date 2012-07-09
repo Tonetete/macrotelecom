@@ -278,8 +278,15 @@ function resultado(data) {
   var clase = "highlight";
   var dataTareas = opcionesTareas();
   var optionsTareas = printTareas(dataTareas);  
-  //alert(data);
+  var disabledUni=""; var disabledHora="";
            $.each(data,function(index,value){
+               if(data[index].TareaCobro=="Hora"){
+                   disabledUni='disabled="disabled"';
+               }
+               else if(data[index].TareaCobro=="Comision") {
+                   disabledHora='disabled="disabled"';
+               }
+               
                
                if(i%2==0) clase = "''"; else clase="highlight";
                $("#contenido").append('<tr class="'+clase+'">'+
@@ -287,17 +294,18 @@ function resultado(data) {
                '<td><span class="tipoAgente">'+data[index].TipoAgente+"</span></td>"+
                '<td><span class="nombreAgente">'+data[index].Nombre+'</span></td>'+               
                '<td class="editar"><span class ="fechaTarea">'+data[index].Fecha+'</span><input style="display:none; width: 70px;" class="validate[required,custom[date]] text-input datepickerEdit" type="text" name="date" /></td>'+               
-               '<td class="editar"><span class="iniTarea">'+data[index].Inicio+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerIniEdit" type="text" style="width: 70px"  value="'+data[index].Inicio+'" /></td>'+               
-               '<td class="editar"><span class="finTarea">'+data[index].Fin+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerFinEdit" type="text" style="width: 70px"  value="'+data[index].Fin+'" /></td>'+    
+               '<td class="editar"><span class="iniTarea">'+data[index].Inicio+'</span><input '+disabledHora+' style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerIniEdit" type="text" style="width: 70px"  value="'+data[index].Inicio+'" /></td>'+               
+               '<td class="editar"><span class="finTarea">'+data[index].Fin+'</span><input '+disabledHora+' style="display:none; width: 70px;" style="display:none; width: 70px;" class="validate[required,custom[hour]] text-input timepickerFinEdit" type="text" style="width: 70px"  value="'+data[index].Fin+'" /></td>'+    
                '<td><span class="intervaloTarea">'+data[index].Intervalo+'</span></td>'+               
-               '<td class="editar"><span class="tipoTarea">'+data[index].TipoTarea+'</span><select style="display:none; width: 78px" class="tareaEdit">'+optionsTareas+'</select></td>'+               
-               '<td class="editar"><span class="unidades">'+data[index].Unidades+'</span><input style="display:none; width: 70px;" style="display:none; width: 70px;" class="text-input unidadesEdit" type="text" style="width: 70px"  value="'+data[index].Unidades+'" /></td>'+               
+               '<td class="editar"><span class="tipoTarea">'+data[index].TipoTarea+'</span><select id="tipo-tarea-select-'+i+'" style="display:none; width: 78px" class="tareaEdit">'+optionsTareas+'</select></td>'+               
+               '<td class="editar"><span class="unidades">'+data[index].Unidades+'</span><input '+disabledUni+' style="display:none; width: 70px;" style="display:none; width: 70px;" class="text-input unidadesEdit" type="text" style="width: 70px"  value="'+data[index].Unidades+'" /></td>'+               
                '<td><span class="costeTarea">'+data[index].Coste+'</span></td>'+               
                '<td><span class="comisionTarea">'+data[index].Comision+'</span></td>'+                              
                '<td><img class="eliminar" src="img/delete.png" alt="Edit" /></td>'+
                '<td><input type="checkbox" name="delete[]" value="" /></td></tr>');
                
-               
+               disabledUni="";
+               disabledHora="";
                // Seleccionamos la opción por defecto que debe presentar el dropdownlist de tareas
                
                $("#tipo-tarea-select-"+i).val(data[index].idTipoTarea).attr("selected", true);
@@ -310,7 +318,7 @@ function resultado(data) {
            });
            
            $("#contenido tr").each(function() {
-                 $(this).find('.datepickerEdit').datepicker();
+                 $(this).find('.datepickerEdit').datepicker({ showButtonPanel: true });
                  $(this).find('.datepickerEdit').val($(this).find('.fechaTarea').text());
                  //$(this).effect("highlight", {color: "yellow"}, 1000);
                  $(this).find('.timepickerIniEdit').timepicker({
@@ -324,6 +332,20 @@ function resultado(data) {
                     showCloseButton: true
                });
            });
+           
+           // Si se trata de un empleado, imprimimos su retribución en lo alto de la página
+           
+           if($("#empleado").val()!="") {
+              $("#retribEmpleado").show();
+              $("#retribEmpleado").text("Retribución para el período citado: "+data[0].total);
+              //alert(data[0].total);
+              
+           }
+           
+           else {
+               $("#retribEmpleado").hide();
+               $("#retribEmpleado").text("");
+           }
   }
    
 }
@@ -455,7 +477,17 @@ $(".editar").live('click',function() {
                 
                 fila.find(".costeTarea").text(data[i].Coste);
                 fila.find(".comisionTarea").text(data[i].Comision);
-                fila.find(".intervaloTarea").text(data[i].Intervalo);               
+                fila.find(".intervaloTarea").text(data[i].Intervalo);  
+                if(data[i].TareaCobro=="Hora") {
+                  fila.find(".unidadesEdit").attr("disabled", "disabled");
+                  fila.find(".timepickerIniEdit").removeAttr("disabled")
+                  fila.find(".timepickerFinEdit").removeAttr("disabled");
+                }                
+                else if(data[i].TareaCobro=="Comision") {
+                  fila.find(".unidadesEdit").removeAttr("disabled");
+                  fila.find(".timepickerIniEdit").attr("disabled", "disabled");
+                  fila.find(".timepickerFinEdit").attr("disabled", "disabled");
+                }
             });
         }
        });

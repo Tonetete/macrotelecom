@@ -26,12 +26,13 @@
      // Realizamos de nuevo la consulta para modificar la fila resultante, en este caso los posibles valores a
      // mostrar son los que actualizamos y buscaremos por el id de tarea
      
-     $filaMod = mysql_query("SELECT TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo', 
-                            (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', 
-                            tipo.precioTarea*t.unidades AS 'Comision'
-                            FROM Agentes a, Tareas t, TipoTarea tipo
-                            WHERE tipo.idTipoTarea=t.idTipoTarea AND t.idTarea =".$_GET['id']."");
+     $filaMod = mysql_query("SELECT TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))
+                            +(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora/60)) AS 'Coste', 
+                            (tipo.precioTarea * t.unidades) AS 'Comision', ta.tipo AS 'TareaCobro'
+                             FROM Tareas t, TipoTarea tipo, TareaCobro ta
+                             WHERE t.idTipoTarea=tipo.idTipoTarea AND ta.idTareaCobro=tipo.idTareaCobro AND t.idTarea =".$_GET['id']."");
      
+     $registros=array();
      while($row = mysql_fetch_array($filaMod)) {
      $x=0;
      for($i=0; $i<mysql_num_fields($filaMod);$i++) {   

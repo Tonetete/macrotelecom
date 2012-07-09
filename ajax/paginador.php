@@ -31,29 +31,6 @@
        $NroRegistros = mysql_num_rows(mysql_query(consultarTareas2("", "", "", "", "")));
    }
  
- /*if(($_GET['fecha']!="")&&($_GET['filt']!="")) {     
-     $filtro = $_GET['filt'];   
-     $fecha = $_GET['fecha'];
-     
-     $Resultado=mysql_query(consultarTareasLimitFiltrarFecha($fecha,$filtro,$RegistrosAEmpezar, $RegistrosAMostrar));
-     $NroRegistros = mysql_num_rows(mysql_query(consultarTareasFiltrarFecha($fecha,$filtro)));
- }
- else if(($_GET['fecha']=="")&&($_GET['filt']!="")) {     
-     $filtro = $_GET['filt'];  
-     
-     $Resultado=mysql_query(consultarTareasLimitFiltrar($filtro,$RegistrosAEmpezar, $RegistrosAMostrar));
-     $NroRegistros = mysql_num_rows(mysql_query(consultarTareasFiltrar($filtro)));
- }
- else if(($_GET['fecha']!="")&&($_GET['filt']=="")) {
-     $fecha = $_GET['fecha'];
-     
-     $Resultado=mysql_query(consultarTareasLimitFecha($fecha,$RegistrosAEmpezar, $RegistrosAMostrar));
-     $NroRegistros = mysql_num_rows(mysql_query(consultarTareasFecha($fecha)));
- }
- else {
-    $Resultado=mysql_query(consultarTareasLimit($RegistrosAEmpezar, $RegistrosAMostrar));
-    $NroRegistros = mysql_num_rows(mysql_query(consultarTareas()));
- }*/
 
  $registros = array();
  $x=0;
@@ -61,7 +38,7 @@
      
        for($i=0; $i<mysql_num_fields($Resultado);$i++) {
            if(mysql_field_name($Resultado,$i)=='Comision'||mysql_field_name($Resultado,$i)=='Coste') {
-                $registros[$x][mysql_field_name($Resultado,$i)] = curr_format('EUR', $row[$i]);
+                $registros[$x][mysql_field_name($Resultado,$i)] = curr_format('EUR', $row[$i]);                
            }
            else {
                 $registros[$x][mysql_field_name($Resultado,$i)] = $row[$i];
@@ -69,6 +46,27 @@
        }
    $x++;    
 }     
+
+
+// Si el campo empleados no es nulo es que se ha seleccionado un empleado, procedemos a hacer
+// una consulta para calcular sus retribuciones
+
+if($empleado!="") {
+    $resultadoRetrib = mysql_query(consultarTareas2($empleado, $fecha, $fechaini, $fechafin, $agente));
+    
+    while($row = mysql_fetch_array($resultadoRetrib)) {
+     
+       for($i=0; $i<mysql_num_fields($resultadoRetrib);$i++) {
+           if(mysql_field_name($resultadoRetrib,$i)=='Comision'||mysql_field_name($resultadoRetrib,$i)=='Coste') {                
+                $registros[0][total]+=$row[$i];
+           }
+       }   
+   }     
+}
+
+// Total a retribuir al empleado 
+$total = $registros[0][total];
+$registros[0][total] = curr_format('EUR', $total);
 
 //******--------determinar las páginas---------******//
  $registros[0][numRegistros] = $NroRegistros;
