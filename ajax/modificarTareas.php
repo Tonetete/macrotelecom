@@ -7,20 +7,20 @@
 
  //estos valores los recibo por GET
  if(isset($_GET['id'])&&(isset($_GET['fecha']))&&(isset($_GET['inicio']))&&(isset($_GET['fin']))&&
-         (isset($_GET['tarea']))) {
+         (isset($_GET['tarea'])&&(isset($_GET['unidades'])))) {
   
      $dateIni = $_GET['fecha']." ".$_GET['inicio'].":00";
      $dateIni = preg_replace('#(\d{2})/(\d{2})/(\d{4})\s(.*)#', '$3-$2-$1 $4', $dateIni);
      $dateFin = $_GET['fecha']." ".$_GET['fin'].":00";
      $dateFin = preg_replace('#(\d{2})/(\d{2})/(\d{4})\s(.*)#', '$3-$2-$1 $4', $dateFin);
-     
+     $unidades = $_GET['unidades'];
      // Obtenemos el id del tipo de tarea
      //$idTipoTarea = 0;
      $res = mysql_query("SELECT idTipoTarea from TipoTarea WHERE nombre='".$_GET['tarea']."'");
      $idTipoTarea = mysql_result($res,0);
      
      $resTarea = mysql_query("UPDATE Tareas SET fechaTarea='".$dateIni."' ,
-                               horaInicio='".$dateIni."', horaFin='".$dateFin."', 
+                               horaInicio='".$dateIni."', unidades=".$unidades.", horaFin='".$dateFin."', 
                                idTipoTarea=".$idTipoTarea." WHERE idTarea=".$_GET['id']."");
      
      // Realizamos de nuevo la consulta para modificar la fila resultante, en este caso los posibles valores a
