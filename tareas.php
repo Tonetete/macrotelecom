@@ -205,6 +205,7 @@
                                                                     <th>Fin</th>
                                                                     <th>Intervalo</th>
                                                                     <th>Tipo de Tarea</th>
+                                                                    <th>Unidades</th>
                                                                     <th>Coste/Horas</th>
                                                                     <th>Coste/Comisiones</th>								
                                                                     <th>&nbsp;</th>
