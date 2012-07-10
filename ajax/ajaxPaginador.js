@@ -108,8 +108,8 @@ $(function() {
 $(function() {
     $("#menuOptions > select").change(function() {
          var nombre = $(this).val();
-         var fecha=""; var agentes=""; var empleado="";
-         var pag=""; var fechaIni=""; var fechaFin="";
+         var fecha="";var agentes="";var empleado="";
+         var pag="";var fechaIni="";var fechaFin="";
          $("#menuOptions select").each(function() {
              if($(this).attr("id")=="fechaTareas") {
                  fecha = $(this).val(); 
@@ -271,6 +271,10 @@ function resultado(data) {
   $('#pdfRetrib').val('Sel').attr('selected',true);
   if((data[0].numRegistros)==0) {
          alert('No hay registros para los filtros seleccionados.');
+          $("#salario").hide();
+          $("#desc_salario").hide();
+          $("#desc_salario").text("");
+          $("#salario").text("");
      }
   else {            
   
@@ -278,7 +282,7 @@ function resultado(data) {
   var clase = "highlight";
   var dataTareas = opcionesTareas();
   var optionsTareas = printTareas(dataTareas);  
-  var disabledUni=""; var disabledHora="";
+  var disabledUni="";var disabledHora="";
            $.each(data,function(index,value){
                if(data[index].TareaCobro=="Hora"){
                    disabledUni='disabled="disabled"';
@@ -318,7 +322,7 @@ function resultado(data) {
            });
            
            $("#contenido tr").each(function() {
-                 $(this).find('.datepickerEdit').datepicker({ showButtonPanel: true });
+                 $(this).find('.datepickerEdit').datepicker({showButtonPanel: true});
                  $(this).find('.datepickerEdit').val($(this).find('.fechaTarea').text());
                  //$(this).effect("highlight", {color: "yellow"}, 1000);
                  $(this).find('.timepickerIniEdit').timepicker({
@@ -336,15 +340,18 @@ function resultado(data) {
            // Si se trata de un empleado, imprimimos su retribución en lo alto de la página
            
            if($("#empleado").val()!="") {
-              $("#retribEmpleado").show();
-              $("#retribEmpleado").text("Retribución para el período citado: "+data[0].total);
+              $("#salario").show();
+              $("#desc_salario").text("Retribución para el período citado: ");
+              $("#salario").text(data[0].total);
               //alert(data[0].total);
               
            }
            
            else {
-               $("#retribEmpleado").hide();
-               $("#retribEmpleado").text("");
+               $("#salario").hide();
+               $("#desc_salario").hide();
+               $("#salario").text("");
+               $("#desc_salario").text("");
            }
   }
    
@@ -365,7 +372,7 @@ $(function(){
                             "&horafin="+$("#timepicker_fin_insertar").val()+"&tarea="+$("#tareas").val()+
                             "&uni="+$("#unidades").val(), dataType: 'json',
                         success: function(data) {
-                            id=data;
+                            id=data;                            
                            // Una vez introducido se vuelve a mandar una petición ajax para actualizar el grid
                            $.ajax({type:"GET", url: "ajax/paginador.php?pag="+$("#selPagAlto").val()+"&agente="+$("#tipoAgente").val()+"&fecha="+$("#fechaTareas").val()+"&emp="+$("#empleado").val()+"&fechaini="+$('#dateini').val()+"&fechafin="+$('#datefin').val(), dataType: "json", 
                                 success: function(data) {              
@@ -461,7 +468,7 @@ $(".editar").live('click',function() {
     var tipo_tarea_val =fila.find(".tareaEdit option:selected").text();
     var unidades_val = fila.find(".unidadesEdit").val();
     //var id_tarea_val = $("#id-tarea-"+ID).text();
-    var coste_val =""; var intervalo_val =""; var comision_val ="";
+    var coste_val ="";var intervalo_val ="";var comision_val ="";
     
     var fila = $(this).closest("tr");
     
@@ -470,7 +477,7 @@ $(".editar").live('click',function() {
     fin_val+'&tarea='+tipo_tarea_val+"&unidades="+unidades_val;
     //alert($(this).closest("tr").find(".fechaTarea").text());
     if(fecha_val.length>0&& inicio_val.length>0 && fin_val.length>0 && tipo_tarea_val.length>0 && unidades_val>=0){
-    $.ajax({ type: "GET", url: "ajax/modificarTareas.php", dataType: 'json', data: dataString, cache: false,
+    $.ajax({type: "GET", url: "ajax/modificarTareas.php", dataType: 'json', data: dataString, cache: false,
         
         success: function(data) {
             $.each(data,function(i,item){
@@ -520,4 +527,46 @@ $(".editar").live('click',function() {
     {
        alert('Alguno de los campos no están completos.');
     }
+});
+
+
+// Control de las retribuciones
+
+$(function(){
+    $("#Retrib").change(function(){
+       if($(this).val()=="retrbEmpleado") {
+         if($("#empleado").val()!="") {    
+             var sal = $("#salario").text();                               
+                var sal1 = sal.replace(/[^\d,]/g,"");
+                var sal2 = sal1.replace(",",".");
+                alert(sal2);
+                if($("#dateini").val()=="" && $("#datefin").val()=="" && $("#fechaTareas").val()=="") {
+                    alert("Para generar la retribución del empleado debes seleccionar un rango de fechas o un mes.");
+                }
+
+                else if($("#dateini").val()!="" && $("#datefin").val()!="") {
+                    var fechaIni = $("#dateini").val();
+                    var fechaFin = $("#datefin").val(); 
+
+
+                }
+
+                else {
+                    var fecha = $("#fechaTareas option:selected").text();
+                    //alert(fecha);
+                    var dataString = "fecha="+ $("#fechaTareas").val()+"&fechaini="+$("#dateini").val()+"&fechafin="+$("#datefin").val()
+                                +"&emp="+$("#empleado").val()+"&salario="+sal2;
+                    $.ajax({type: "GET", url: "ajax/generarRetribucion.php", data: dataString, cache: false,
+                            success: function(){
+                                $.ajax({type:"GET", url:"ajax/actualizarManodeobra.php", data: dataString, cache: false,
+                                    success: function() {
+                                        alert('Retribución generada para el empleado '+$("#empleado").val()+" con mes de "+$("#fechaTareas option:selected").text());
+                                }                     
+                            });
+                    }});               
+                }
+         }
+       } 
+       
+    });
 });

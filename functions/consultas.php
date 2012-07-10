@@ -61,7 +61,7 @@ function totalizadorBarras() {
 				$colorBarra = "blue";
 				$valor = $row[1];
 			}
-			echo '<li name ="'.$valor.'"title="'.calcularValorBarra($max,$valor).'" class="'.$colorBarra.'">'.
+			echo '<li name ="'.curr_format('EUR', $valor).'"title="'.calcularValorBarra($max,$valor).'" class="'.$colorBarra.'">'.
 				 '<span style="" class="title-bar">'.$row[0].'</span>'.
 				 '<span class="bar"></span>'.
 				 '<span class="percent"></span>'.
@@ -90,10 +90,22 @@ function getMesQuery($fecha) {
 function curr_format($curr, $amount){
   switch ($curr){
   case "EUR":
-  $ret = number_format($amount, 2, ",", " ")."€";
+  $ret = number_format($amount, 2, ",", ".")."€";
   break;
   case "US":
   $ret = number_format($amount, 2, ".", ",")."&#38;#36;";
+  break;
+  }
+return $ret;
+}
+
+function curr_to_number($curr, $amount){
+  switch ($curr){
+  case "EUR":
+  $ret = number_format($amount, 2, ".", "");
+  break;
+  case "US":
+  $ret = number_format($amount, 2, ".", "");
   break;
   }
 return $ret;
@@ -125,134 +137,6 @@ function consultarDatosEmpresa(){
     return $info;
 }
 
-function consultarTareas() {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste',  tipo.precioTarea*t.unidades   AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil
-ORDER BY t.horaInicio DESC";
-        return $res;
-
-	//imprimirTareas($res);
-}
-
-
-function consultarTareasLimit($RegistrosAEmpezar, $RegistrosAMostrar) {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil
-ORDER BY t.horaInicio DESC
-LIMIT ".$RegistrosAEmpezar.", ".$RegistrosAMostrar.";";
-        return $res;
-
-	//imprimirTareas($res);
-}
-
-function consultarTareasEmpleado($empleado) {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste',  tipo.precioTarea*t.unidades   AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND a.nombre='".$empleado."'
-ORDER BY t.horaInicio DESC";
-        return $res;
-
-	//imprimirTareas($res);
-}
-
-function consultarTareasEmpleadoLimit($empleado, $RegistrosAEmpezar, $RegistrosAMostrar) {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste',  tipo.precioTarea*t.unidades   AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND a.nombre='".$empleado."'
-ORDER BY t.horaInicio DESC
-LIMIT ".$RegistrosAEmpezar.", ".$RegistrosAMostrar.";";
-        return $res;
-
-	//imprimirTareas($res);
-}
-
-
-function consultarTareasFiltrar($filtro) {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND p.nombre='".$filtro."'
-ORDER BY t.horaInicio DESC;";
-        return $res;
-
-}
-
-
-function consultarTareasLimitFiltrar($filtro, $RegistrosAEmpezar, $RegistrosAMostrar) {
-	$res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND p.nombre='".$filtro."'
-ORDER BY t.horaInicio DESC
-LIMIT ".$RegistrosAEmpezar.", ".$RegistrosAMostrar.";";
-        return $res;
-
-	//imprimirTareas($res);
-}
-
-function consultarTareasLimitFiltrarFecha($fecha,$filtro,$RegistrosAEmpezar, $RegistrosAMostrar) {
-        $res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND p.nombre='".$filtro."' AND t.horaInicio LIKE '%".$fecha."%'
-ORDER BY t.horaInicio DESC
-LIMIT ".$RegistrosAEmpezar.", ".$RegistrosAMostrar.";";
-        return $res;
-}
-
-function consultarTareasFiltrarFecha($fecha,$filtro) {
-        $res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND p.nombre='".$filtro."' AND t.horaInicio LIKE '%".$fecha."%'
-ORDER BY t.horaInicio DESC";
-        return $res;
-}
-
-function consultarTareasLimitFecha($fecha,$RegistrosAEmpezar, $RegistrosAMostrar) {
-    $res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND t.horaInicio LIKE '%".$fecha."%'
-ORDER BY t.horaInicio DESC
-LIMIT ".$RegistrosAEmpezar.", ".$RegistrosAMostrar.";";
-        return $res;
-}
-
-function consultarTareasFecha($fecha) {
-    $res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND t.horaInicio LIKE '%".$fecha."%'
-ORDER BY t.horaInicio DESC";
-        return $res;
-}
 
 
 
@@ -264,17 +148,7 @@ function consultarEmpleados() {
     return $res;
 }
 
-function consultarTareasFechaEmpleado($fecha,$empleado) {
-    $res ="SELECT t.idTarea AS 'idTarea', tipo.idTipoTarea AS 'idTipoTarea', t.idTipoTarea AS 'idTipoTarea', p.nombre AS 'TipoAgente', a.nombre AS 'Nombre', 
-DATE_FORMAT(t.horaInicio,'%d/%m/%Y') AS 'Fecha', DATE_FORMAT(t.horaInicio,'%H:%i') AS 'Inicio',
-DATE_FORMAT(t.horaFin,'%H:%i') AS 'Fin', TIMEDIFF(t.horaFin,t.horaInicio) AS 'Intervalo',
-tipo.nombre AS 'TipoTarea', t.unidades AS 'Unidades', (tipo.precioHora*(HOUR(TIMEDIFF(t.horaFin,t.horaInicio)))+(MINUTE(TIMEDIFF(t.horaFin,t.horaInicio))*tipo.precioHora)/60) AS 'Coste', tipo.precioTarea*t.unidades AS 'Comision'
-FROM Agentes a, Tareas t, TipoTarea tipo, Perfil p
-WHERE t.idAgente = a.idAgente AND t.idTipoTarea=tipo.idTipoTarea AND p.idPerfil=a.idPerfil AND t.horaInicio LIKE '%".$fecha."%'
-AND a.nombre='".$empleado."'
-ORDER BY t.horaInicio DESC";
-        return $res;
-}
+
 
 
 function consultarTareas2($empleado,$fecha,$fechaIni,$fechaFin,$agente) {

@@ -8,15 +8,13 @@
  
  
  //estos valores los recibo por GET
- if(($_GET['fecha'])!="") {
+ if(isset($_GET['fecha']) && isset($_GET['fechaini']) && isset($_GET['fechafin']) && isset($_GET['emp'])) {
   
-     $resEmpl = mysql_query(consultarEmpleados());
-     while ($row = mysql_fetch_array($resEmpl)) {
             
             // Establecemos el numero de paginas a 1 para cada retribucion
          
             $pag = 1;
-            $resTareas = mysql_query(consultarTareasFechaEmpleado($_GET['fecha'], $row['nombre']));  
+            $resTareas = mysql_query(consultarTareas2($_GET['emp'], $_GET['fecha'], $_GET['fechaini'], $_GET['fechafin'], ""));
             
             // Si tenemos 0 filas, no imprimimos su retirbucion
             if(mysql_num_rows($resTareas)!=0) {
@@ -157,13 +155,12 @@
             $pdf->addCadreEuros();
             $pdf->Output($_SERVER['DOCUMENT_ROOT'].'/macrotelecomnuevo/pdf/retrib-'.$row['nombre'].'-'.$_GET['fecha'].'.pdf','F');
             
-     }
-   }
-     echo json_encode("Retribuciones para la fecha ".$_GET['fecha']." han sido generadas.");
+     }   
+     //echo json_encode("Retribuciones para la fecha ".$_GET['fecha']." han sido generadas.");
  }
  
  else {
-         echo json_encode("Debes seleccionar una fecha antes de generar las retribuciones.");
+         //echo json_encode("Debes seleccionar una fecha antes de generar las retribuciones.");
      }
  
 ?>

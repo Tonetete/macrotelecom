@@ -1,6 +1,7 @@
 <?php
 
 require_once('datosConexion.php');
+require_once('consultas.php');
 
 function maxImporte(){
 	$res = mysql_query('SELECT MAX(importe) FROM Conceptos;');

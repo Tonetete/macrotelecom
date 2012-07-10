@@ -172,7 +172,8 @@
                                                         <img id src="img/calendar_view_month.png" alt="consultarFecha" /> <a href="#">Filtrar mes</a><?php insertarFechas(); ?> 
                                                         <img id src="img/group.png" alt="consultarAgente" /> <a href="#">Agente</a><?php listarAgentes(); ?> 
                                                         <img id src="img/user.png" alt="consultarEmpleado" /> <a href="#">Empleado</a><?php listarEmpleados('listar','Todos'); ?>
-                                                        <span style="display:none; float:right; margin-right: 30px;" id="retribEmpleado"></span>
+                                                        <span style="display:none; float:right; margin-right: 30px;" id="desc_salario"></span>
+                                                        <span style="display:none; float:right; margin-right: 30px;" id="salario"></span>
                                                         <img class="firstPag" id="firstUp" src="img/resultset_first.png" alt="First" /> 
                                                         <img class="antPag" id="antUp" src="img/resultset_previous.png" alt="Previous" /> 
                                                         <select id="selPagAlto" name="pageBottom">                                                            
@@ -227,8 +228,9 @@
 							                                                                                                                 
                                                         <img class="borrarTodos" src="img/delete.png" alt="Remove" /> <a href="#">Borrar seleccionados</a>
                                                         <img src="img/pdf.png" alt="Remove" /> <a href="#">Generar retribuciones</a>
-                                                         <select id="pdfRetrib" name="retribucion">
+                                                         <select id="Retrib" name="retribucion">
                                                             <option value="Sel">Seleccionar...</option>
+                                                            <option value="retrbEmpleado">Retribución Empleado</option>                                                            
                                                             <option value="retrbEmpleados">Retrib. Mensual Emp.</option>                                                            
                                                         </select>
 						</div>
